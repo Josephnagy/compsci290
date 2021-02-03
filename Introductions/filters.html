@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Joseph Nagy">
+    <!-- always label your name with a title -->
+    <title>CompSci 290, Spring 2021 : Introductions</title>
+    <!-- scale page to fit entire screen, so it properly fills non-desktop devices -->    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- DEV-only for easier refreshing: stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- Import Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- needed class for pixel level image manipulation -->
+    <script async src="https://www2.cs.duke.edu/courses/compsci290/spring21/resources/code/js/SimpleImage.js"></script>
+    <!-- interaction for this page, defer loading until after page to allw access to DOM elements -->
+    <script defer src="main.js"></script>
+</head>
+
+<!-- Header -->
+<header id="header">
+    <div class="container">
+        <img src="images/headshot.jpg" class="logo" alt="professional image of myself">
+        <!-- Nav Bar -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="snowboard.html">Snowboarding</a></li>
+                <li><a href="filters.html">Greyscale Filter</a></li>
+                <li><a href="https://www2.cs.duke.edu/courses/spring21/compsci290/" target="blank">Course Homepage</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<body> 
+    <div class="title" id="greyscale-title">
+        <h1>Greyscale Image Filter</h1>
+    </div>
+    
+    <canvas id="imagecanvas">
+        <!-- Area used to display uploaded image to be filtered -->
+    </canvas>
+    
+    <div class="center">
+        <p> Choose Image Here:</p>
+        <input type="file" id="fileInput" multiple="false" accept="image/*" onchange="loadImage()"> </input>
+    </div>
+    <div class="center">
+        <button id="create" onclick="greyscale()"">Filter Image</button>
+        <button id=" clear" onclick="clearCanvas()">Clear Image</button>
+    </div>
+    </body>
+</body>
+<footer>
+    <p>Contact Information: (908)-216-0055 | nagyjoseph9@gmail.com </p>
+    <p> NOTE: All images are my own</p>
+</footer>
+</html>

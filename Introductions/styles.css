@@ -1,0 +1,205 @@
+/* General Styling */ 
+body{
+  background-color: #5D5C61;
+}
+
+p, ol, ul{
+  font-family: 'Cabin', sans-serif;
+  color: white; 
+  font-size: 30px;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: white;
+}
+  a:hover{
+    color: #557A95;
+  }
+/* Header */
+header{
+  background-color: #5D5C61;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  border: 4px solid #557A95;
+}
+header::after{
+    content: "";
+    display: table; 
+    clear: both;
+}
+.logo {
+    float: left;
+    width: 3%;
+    border-radius: 20%;
+}
+
+/* Footer */ 
+footer {
+  text-align: center;
+  border: 4px solid #557A95;
+}
+  footer p{
+    font-size: 15px;
+  }
+
+/* Nav Bar */
+.nav ul{
+    text-align: center;
+    list-style: none;
+    width: 100%;
+  }
+.nav li {
+    float: left;
+    display: inline;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    position: relative;
+    padding: 20px;
+    padding-top: 30px;
+}
+  .nav li a{ 
+      display:inline-block; 
+      color: white; 
+      font-size: 25px;
+      text-decoration: none;
+      text-transform: uppercase;
+  }
+  .nav a:hover{
+      color:#557A95;
+  }
+    nav a:hover::before{
+    width: 100%;
+}
+nav a::before { 
+    content:"";
+    display: block; 
+    height: 5px; 
+    background-color: #557A95;
+    position: absolute; 
+    top: 0; 
+    width: 0%;
+    transition: all ease-in-out 200ms; 
+}
+
+/* Homepage */ 
+.title {
+    border: 4px solid #557A95;
+    width: 30%;
+    text-align: center;
+    background: #7395AE;
+}
+  .title h2{
+    font-size: 40px;
+    color: white;
+  }
+  .title#greyscale-title{
+    margin: auto;
+  }
+
+
+
+/* Snowboarding */
+.row{ 
+  display: flex;
+  border: 4px solid #557A95;
+}
+
+.column {
+    flex: 50%;
+    height: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  .column#abasin{
+    background-position: center;
+  }
+  .column#stratton{
+    background-position: 20% top;
+  }
+  .column#breck{
+    background-position: center 52%;
+  }
+  .column#creek{
+    background-position: 20% top;
+  }
+
+.description{
+  background-color: #5D5C61;
+  padding-top: 175px;
+}
+
+.snowboard-title {
+    border: 4px solid #557A95;
+    text-align: center;
+    font-size: 70px;
+    background: #7395AE;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+  .snowboard-title h2{ 
+    margin-block-start: 0;
+    margin-block-end: 0;
+    color: white;
+  }
+.snowboard-subtitle{
+  border: 4px solid #557A95;
+  text-align: center;
+  font-size: 50px;
+  background: #7395AE;
+  font-style: italic;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+  .snowboard-subtitle h3{ 
+      margin-block-start: 0;
+      margin-block-end: 0;
+      color: white;
+    }
+.snowboard-description{
+  /* border: 4px solid #557A95; */
+  text-align: center;
+  /* background: #7395AE; */
+  margin: auto;
+  width: 60%;
+}
+  .snowboard-description p{ 
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 30px;
+        color: white;
+      }
+
+/* Filters Page */ 
+canvas {
+    background-color: #eee;
+    width: 400px;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #c3c3c3;
+}
+.center {
+  text-align: center;
+  font-size: 30px;
+}
+  .center button{
+    font-size: 30px;
+  }
+  .center p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  .center input{
+    font-size: 30px;
+    color:white;
+    text-align: center;
+  }
+
