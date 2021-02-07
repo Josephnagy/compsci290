@@ -5,11 +5,11 @@
  * @author Joseph Nagy
  */
 
-function addGameDescription (){
+function addGameDescription() {
     // game description header 
     // create game description header element  
-    let header = document.createElement("h2"); 
-    let text = document.createTextNode("Game Description"); 
+    let header = document.createElement("h2");
+    let text = document.createTextNode("Game Description");
     // append text to header element 
     header.appendChild(text);
     // append header element to document
@@ -45,18 +45,23 @@ function addGameInstructions() {
     document.getElementById("instructions-content").appendChild(paragraph);
 }
 
-function removeGameDescription (){ 
-    document.getElementById("game-description-header").querySelector("h2").remove()
-    document.getElementById("game-description-content").querySelector("p").remove()
- }
+function removeGameDescription() {
+    document.getElementById("game-description-header").querySelector("h2").remove();
+    document.getElementById("game-description-content").querySelector("p").remove();
+}
 
 function removeGameInstructions() {
-    document.getElementById("instructions-header").querySelector("h2").remove()
-    document.getElementById("instructions-content").querySelector("p").remove()
+    document.getElementById("instructions-header").querySelector("h2").remove();
+    document.getElementById("instructions-content").querySelector("p").remove();
+}
+
+function getWord() {
+    return usefulWords[Math.floor(Math.random() * usefulWords.length)];
 }
 
 
-function startGame(){
-    removeGameDescription(); 
-    removeGameInstructions(); 
+function startGame() {
+    // Remove instructions 
+    removeGameDescription();
+    removeGameInstructions();
 }
