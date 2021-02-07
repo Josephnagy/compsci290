@@ -15,6 +15,9 @@
     <meta http-equiv="Expires" content="0" />
     <!-- Link the stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="usefulWords.js"></script>
+    <script defer src="main.js"></script>
 </head>
 
 <!-- Header -->
@@ -30,7 +33,40 @@
 </header>
 
 <body>
+    <div> 
+        <h1>Welcome to my Hangman Game</h1>
+    </div>
 
+    <!-- Game Details -->
+    <div>
+        <h2>Game description</h2>
+    </div>
+    <div>
+        <p> This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+        </p>
+    </div>
+
+    <div>
+        <h2>How to play</h2>
+    </div>
+    <div>
+        <p> This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+        </p>
+    </div>
+     
+    <!-- Game Interaction -->
+    <div id="actions">
+        <button onclick="startGame()">Start Game</button>
+    </div>  
+ 
 </body>
 
 </html>
