@@ -5,6 +5,9 @@
  * @author Joseph Nagy
  */
 
+/*
+ * Style-related functions
+ */
 function addGuessesLeft(){
     // guesses left 
     // create guesses left paragraph element 
@@ -65,8 +68,16 @@ function removeGameInstructions() {
     document.getElementById("instructions-content").querySelector("p").remove();
 }
 
+/*
+ * Game functions
+ */
+
 function getWord(){
     return usefulWords[Math.floor(Math.random() * usefulWords.length)];
+}
+
+function letterToNumber(letter){
+    return letter.charCodeAt(0) - 97;
 }
 
 function getDifficulty(difficulty){
@@ -78,21 +89,48 @@ function getDifficulty(difficulty){
     }
 }
 
+// returns letters user has NOT guessed as a string 
+function getLettersNotGuessed(lettersGuessed){
+    notGuessed = alphabet;
+    for(i=0; i<lettersGuessed.length;i++){
+        if(lettersGuessed[i] in alphabet) {
+            notGuessed[letterToNumber(lettersGuessed[i])] = " ";
+        }
+    }
+    return notGuessed;
+}
+
+// update document with game status
+function loadGuessesRemaining(guessesRemaining){
+    let parent = document.getElementById("guesses-remaining"); 
+    parent.textContent = String(guessesRemaining); 
+}
+function loadLettersNotGuessedYet(lettersNotGuessed) {
+    let parent = document.getElementById("letters-remaining");
+    parent.textContent = String(lettersNotGuessed);
+}
+function loadHangmanWord (hangmanWord){
+    let parent = document.getElementById("hangman-word");
+    text = hangmanWord.join(" ");
+    parent.textContent = String(text);
+}
+
+function updateDisplay(guessesRemaining, lettersNotGuessed, hangmanWord){
+    loadGuessesRemaining(guessesRemaining);
+    loadLettersNotGuessedYet(lettersNotGuessed);
+    loadHangmanWord(hangmanWord);
+}
+
 
 
 function startGame(){
-    // // Remove instructions 
-    // removeGameDescription(); 
-    // removeGameInstructions(); 
-
     // Setup hangman interface
 
-    // get random secretWord 
+    // get important variables
     secretWord = getWord(); 
     hangmanWord = ["_", "_", "_", "_", "_",];
     lettersGuessed = []; 
-    guessesRemaining = getDifficulty("difficulty")
+    guessesRemaining = getDifficulty("difficulty"); 
 
-
-
+    lettersNotGuessed = getLettersNotGuessed(lettersGuessed);
 }

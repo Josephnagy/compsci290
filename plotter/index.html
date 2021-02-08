@@ -85,16 +85,22 @@
     </div>  
 
     <!-- Hangman Interface -->
-    <div id="guesses-left"> 
-        <p># Guesses Left<span id="test"></span> </p>
+    <div id="guesses"> 
+        <p># Guesses Remaining: <span id="guesses-remaining"></span> </p>
     </div>
 
-    <div id="remaining-letters">
-        <p>Letters not guessed yet<span id="test"></span> </p>
+    <div id="letters">
+        <p>Letters not guessed yet: <span id="letters-remaining"></span> </p>
     </div>
 
-    <div id="hangman-word">
-        <p>Hangman word: <span id="test"></span> </p>
+    <div id="hangman">
+        <p>Hangman word: <span id="hangman-word"></span> </p>
+    </div>
+
+    <div id="letter-guess">
+        <label for="guessed-letter">Please guess a letter</label>
+        <input type="text" id="guessed-letter" oninput="this.value = this.value.replace(/[^a-z]/, '')" minlength="1" maxlength="1" size="1">
+        <input type="submit" value="Submit" onclick="handleUserInputLetterGuess()">
     </div>
  
 </body>
