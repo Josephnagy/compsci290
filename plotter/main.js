@@ -5,11 +5,21 @@
  * @author Joseph Nagy
  */
 
-function addGameDescription() {
+function addGuessesLeft(){
+    // guesses left 
+    // create guesses left paragraph element 
+    let paragraph = document.createElement("p"); 
+    paragraph.innerHTML = 10; 
+
+    // append to document 
+    document.getElementById("guesses-left").appendChild(paragraph);
+}
+
+function addGameDescription(){
     // game description header 
     // create game description header element  
-    let header = document.createElement("h2");
-    let text = document.createTextNode("Game Description");
+    let header = document.createElement("h2"); 
+    let text = document.createTextNode("Game Description"); 
     // append text to header element 
     header.appendChild(text);
     // append header element to document
@@ -45,23 +55,44 @@ function addGameInstructions() {
     document.getElementById("instructions-content").appendChild(paragraph);
 }
 
-function removeGameDescription() {
+function removeGameDescription (){ 
     document.getElementById("game-description-header").querySelector("h2").remove();
     document.getElementById("game-description-content").querySelector("p").remove();
-}
+ }
 
 function removeGameInstructions() {
     document.getElementById("instructions-header").querySelector("h2").remove();
     document.getElementById("instructions-content").querySelector("p").remove();
 }
 
-function getWord() {
+function getWord(){
     return usefulWords[Math.floor(Math.random() * usefulWords.length)];
 }
 
+function getDifficulty(difficulty){
+    let element = document.querySelector(`input[name="${difficulty}"]:checked`);
+    if (element === null) {
+        return -1;
+    } else {
+        return parseInt(element.value, 10);
+    }
+}
 
-function startGame() {
-    // Remove instructions 
-    removeGameDescription();
-    removeGameInstructions();
+
+
+function startGame(){
+    // // Remove instructions 
+    // removeGameDescription(); 
+    // removeGameInstructions(); 
+
+    // Setup hangman interface
+
+    // get random secretWord 
+    secretWord = getWord(); 
+    hangmanWord = ["_", "_", "_", "_", "_",];
+    lettersGuessed = []; 
+    guessesRemaining = getDifficulty("difficulty")
+
+
+
 }

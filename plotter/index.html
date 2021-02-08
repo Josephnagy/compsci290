@@ -34,7 +34,7 @@
 
 <body>
     <div> 
-        <h1>Welcome to my Hangman Game</h1>
+        <h1>Hangman Game</h1>
     </div>
 
     <!-- Game Details -->
@@ -63,9 +63,39 @@
     </div>
      
     <!-- Game Interaction -->
+
+    <!-- Select Difficulty -->
+    <div class="difficulty" id="select-difficulty">
+    <p>Please select your level of difficulty</p>
+    <ul>
+        <li>
+            <input type="radio" name="difficulty" value="8">
+            <label for="12">easy</label>
+        </li>
+        <li>
+            <input type="radio" name="difficulty" value="12">
+            <label for="12">hard</label>
+        </li>
+    </ul>
+    </div>
+
+    <!-- Start Game -->
     <div id="actions">
         <button onclick="startGame()">Start Game</button>
     </div>  
+
+    <!-- Hangman Interface -->
+    <div id="guesses-left"> 
+        <p># Guesses Left<span id="test"></span> </p>
+    </div>
+
+    <div id="remaining-letters">
+        <p>Letters not guessed yet<span id="test"></span> </p>
+    </div>
+
+    <div id="hangman-word">
+        <p>Hangman word: <span id="test"></span> </p>
+    </div>
  
 </body>
 
