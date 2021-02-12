@@ -12,6 +12,39 @@
  * 
  * @author Joseph Nagy
  */
+const interactiveIDs = ["guesses", "letters", "template", "letter-guess"];
+const directionalIDs = ["game-description-header", "game-description-content",
+    "instructions-header", "instructions-content"];
+
+const alphabet = `
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+`.split('\n').map(x => x.trim()).filter(x => x.length > 0);
+
 const usefulWords = `
 which
 there
