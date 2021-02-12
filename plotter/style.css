@@ -1,0 +1,4 @@
+/* hide game interactions  */
+#guesses, #letters, #template, #letter-guess, #endgame{
+    display: none;
+}
