@@ -33,7 +33,7 @@
 </header>
 
 <body>
-    <div> 
+    <div>
         <h1>Hangman Game</h1>
     </div>
 
@@ -61,31 +61,33 @@
             This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
         </p>
     </div>
-     
+
     <!-- Game Interaction -->
 
     <!-- Select Difficulty -->
     <div class="difficulty" id="select-difficulty">
-    <p>Please select your level of difficulty</p>
-    <ul>
-        <li>
-            <input type="radio" name="difficulty" value="8">
-            <label for="12">easy</label>
-        </li>
-        <li>
-            <input type="radio" name="difficulty" value="12">
-            <label for="12">hard</label>
-        </li>
-    </ul>
+        <p>Please select your level of difficulty</p>
+        <ul>
+            <li>
+                <!-- Easy: user gets 16 guesses -->
+                <input type="radio" name="difficulty" value="16">
+                <label for="12">easy</label>
+            </li>
+            <li>
+                <!-- Hard: user gets 12 guesses -->
+                <input type="radio" name="difficulty" value="12">
+                <label for="8">hard</label>
+            </li>
+        </ul>
     </div>
 
     <!-- Start Game -->
     <div id="actions">
-        <button onclick="startGame()">Start Game</button>
-    </div>  
+        <button id="start-game-button" onclick="startGame()">Start Game</button>
+    </div>
 
     <!-- Hangman Interface -->
-    <div id="guesses"> 
+    <div id="guesses">
         <p># Guesses Remaining: <span id="guesses-remaining"></span> </p>
     </div>
 
@@ -93,16 +95,22 @@
         <p>Letters not guessed yet: <span id="letters-remaining"></span> </p>
     </div>
 
-    <div id="hangman">
-        <p>Hangman word: <span id="hangman-word"></span> </p>
+    <div id="template">
+        <p>Hangman word: <span id="current-template"></span> </p>
     </div>
 
     <div id="letter-guess">
         <label for="guessed-letter">Please guess a letter</label>
-        <input type="text" id="guessed-letter" oninput="this.value = this.value.replace(/[^a-z]/, '')" minlength="1" maxlength="1" size="1">
-        <input type="submit" value="Submit" onclick="handleUserInputLetterGuess()">
+        <input type="text" id="guessed-letter" oninput="this.value = this.value.replace(/[^a-z]/, '')" minlength="1"
+            maxlength="1" size="1">
+        <input type="submit" value="Submit" onclick="letterGuess()">
     </div>
- 
+
+    <div id="endgame">
+        <label>Choose an option</label>
+        <input id="play-again" type="submit" value="Play Again" onclick="playAgain()">
+    </div>
+
 </body>
 
 </html>
