@@ -5,13 +5,24 @@
  * @author Joseph Nagy
  */
 
+// GLOBAL variables
 let secretWord = "";
 let lettersGuessed = [];
 let guessesRemaining = -1;
+let possibleWordsRemaining = [];
 
 /*
  * Style-related functions
  */
+
+// helper function to hide HTML elements based on id 
+function hideElement(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+function revealElement(id) {
+    document.getElementById(id).style.display = "block";
+}
 
 function addGuessesLeft() {
     // guesses left 
@@ -77,12 +88,19 @@ function removeGameInstructions() {
  * Game functions
  */
 
-function getWord() {
-    return usefulWords[Math.floor(Math.random() * usefulWords.length)];
+function getWord(remaining) {
+    return remaining[Math.floor(Math.random() * remaining.length)];
 }
 
+// converts letter to number (ie a=0,b=1,...)
 function letterToNumber(letter) {
     return letter.charCodeAt(0) - 97;
+}
+
+// change characters in a string 
+function setCharAt(str, index, chr) {
+    if (index > str.length - 1) return str;
+    return str.substring(0, index) + chr + str.substring(index + 1);
 }
 
 function getDifficulty(difficulty) {
@@ -94,16 +112,24 @@ function getDifficulty(difficulty) {
     }
 }
 
-// returns letters user has NOT guessed as a string 
+// returns DISPLAY STRING of letters not guessed yet 
 function getLettersNotGuessed(lettersGuessed) {
     notGuessed = alphabet;
-    for (i = 0; i < lettersGuessed.length; i++) {
-        if (alphabet.includes(lettersGuessed[i])) {
-            notGuessed[letterToNumber(lettersGuessed[i])] = "_";
+    lettersGuessed.forEach(letter => {
+        if (alphabet.includes(letter)) {
+            notGuessed[letterToNumber(letter)] = "_";
         }
-    }
+    });
     return notGuessed;
 }
+
+// OLD METHOD
+// for(i=0; i<lettersGuessed.length;i++){
+//     if (alphabet.includes(lettersGuessed[i])) {
+//         notGuessed[letterToNumber(lettersGuessed[i])] = "_";
+//     }
+// }
+// return notGuessed; }
 
 // update document with game status
 function loadGuessesRemaining(guessesRemaining) {
@@ -114,42 +140,176 @@ function loadLettersNotGuessedYet(lettersNotGuessed) {
     let parent = document.getElementById("letters-remaining");
     parent.textContent = lettersNotGuessed.join(" ");
 }
-function loadHangmanWord(hangmanWord) {
-    let parent = document.getElementById("hangman-word");
-    text = hangmanWord.join(" ");
-    parent.textContent = String(text);
+function loadCurrentTemplate(currentTemplate) {
+    let parent = document.getElementById("current-template");
+    parent.textContent = String(currentTemplate);
 }
 
-function updateDisplay(guessesRemaining, lettersNotGuessed, hangmanWord) {
-    // loadGuessesRemaining(guessesRemaining);
-    // loadLettersNotGuessedYet(lettersNotGuessed);
-    loadHangmanWord(hangmanWord);
+function updateDisplay(guessesRemaining, lettersGuessed, currentTemplate) {
+    loadGuessesRemaining(guessesRemaining);
+    loadLettersNotGuessedYet(getLettersNotGuessed(lettersGuessed));
+    loadCurrentTemplate(currentTemplate);
 }
 
-function letterGuess(secretWord) {
-    // force user to enter letter (ADD LATER)
+function createTemplate(currentTemplate, templateWord, g) {
+    let temp = currentTemplate;
+    if (templateWord.includes(g)) {
+        [...templateWord].forEach(char => {
+            if (char === g) {
+                temp = setCharAt(temp, [...templateWord].indexOf(g), g);
+            }
+        });
+    }
+    return temp;
+}
 
+
+// OLD METHOD
+//     for (j = 0; j < currentTemplate.length; j++) {
+//         if (templateWord[j] === g){
+//             temp = setCharAt(temp, j, g);
+//         }
+//     }
+// }
+// return temp; }
+
+/*
+* This function constructs a dictionary of hangman word templates as the key, and 
+* all of possible words that fit that template as values. 
+* 
+* It uses createTemplate as a helper function to create templates for each word 
+*/
+function getNewWordList(currentTemplate, possibleWords, g) {
+    let dict = {};
+    // populate dict 
+    possibleWords.forEach(word => { // same as word = possibleWords[i]
+        template = createTemplate(currentTemplate, word, g);
+        // if template exists, append word to dict 
+        if (Object.keys(dict).includes(template)) {
+            dict[template].push(word);
+            // else, add key to dict and set equal to array containing word 
+        } else {
+            dict[template] = [word];
+        }
+    });
+
+    // OLD METHOD 
+    //
+    // for (i = 0; i < possibleWords.length; i++) {
+    //     word = possibleWords[i];
+    //     template = createTemplate(currentTemplate, word, g);
+    //     // if template exists, append word to dict 
+    //     if (Object.keys(dict).includes(template)) {
+    //         dict[template].push(word);
+    //     // else, add key to dict and set equal to array containing word 
+    //     } else {
+    //         dict[template] = [word];
+    //     }
+    // }
+
+    // find template with most word possibilities 
+    let newTemplate = Object.keys(dict).reduce((a, b) => dict[a].length > dict[b].length ? a : b);
+    let wordList = dict[newTemplate];
+    return [newTemplate, wordList];
+}
+
+function letterGuess() {
     // get letter guessed 
     guess = document.getElementById("guessed-letter").value;
+
+    // EDGE CASE: input field is blank 
+    if (guess === "") {
+        window.alert("Input field was left blank. Please guess a letter.");
+        return;
+    }
+    // EDGE CASE: repeated guess
+    if (lettersGuessed.includes(guess)) {
+        window.alert("You already guessed that letter. Please pick a new one.");
+        return;
+    }
+
+    // clever part, change hangman word 
+    let n = getNewWordList(currentTemplate, possibleWordsRemaining, guess);
+    newTemplate = n[0];
+    possibleWordsRemaining = n[1];
+
+    secretWord = getWord(possibleWordsRemaining);
+    currentTemplate = newTemplate;
+
+    // CHECK user guess 
     if (secretWord.includes(guess)) {
-        // update hangmanWord 
-        hangmanWord[secretWord.indexOf(guess)] = guess;
-        updateDisplay(guessesRemaining, lettersNotGuessed, hangmanWord);
+        // update current 
+        currentTemplate = setCharAt(currentTemplate, secretWord.indexOf(guess), guess);
+    } else {
+        window.alert("that is incorrect!");
+    }
+
+    // UPDATE display 
+    guessesRemaining--;
+    lettersGuessed.push(guess);
+    updateDisplay(guessesRemaining, lettersGuessed, currentTemplate);
+
+    // CHECK if game has ended 
+    // user lost 
+    if (guessesRemaining === 0) {
+        // Style Page 
+        window.alert("YOU LOST");
+        interactiveIDs.forEach(id => { hideElement(id); });
+        revealElement("endgame");
+        return;
+    } // user won
+    if (currentTemplate === secretWord) {
+        window.alert("YOU WON");
+        interactiveIDs.forEach(id => { hideElement(id); });
+        revealElement("endgame");
+        return;
     }
 }
 
+function loadGame() {
+    // add/remove elements
+    interactiveIDs.forEach(id => { revealElement(id); });
+    directionalIDs.forEach(id => { hideElement(id); });
+    hideElement("select-difficulty");
+    hideElement("start-game-button");
+}
 
 
 function startGame() {
-    // Setup hangman interface
-
-    // get important variables
-    secretWord = getWord();
-    hangmanWord = ["_", "_", "_", "_", "_",];
-    // lettersGuessed = []; //SWITCHED TO GLOBAL 
     guessesRemaining = getDifficulty("difficulty");
-    lettersNotGuessed = getLettersNotGuessed(lettersGuessed);
+    // force user to select difficulty
+    if (guessesRemaining === -1) {
+        window.alert("Please select a difficulty!");
+        return;
+    }
+
+    // load variables
+    secretWord = getWord(usefulWords);
+    currentTemplate = "_____"; // 5 underscores
+    possibleWordsRemaining = usefulWords;
 
     // start game
-    updateDisplay(guessesRemaining, lettersNotGuessed, hangmanWord);
+    updateDisplay(guessesRemaining, lettersGuessed, currentTemplate);
+    loadGame();
+}
+
+function playAgain() {
+    // reveal description + instructions
+    directionalIDs.forEach(id => { revealElement(id); });
+    // reveal difficulty selection
+    revealElement("select-difficulty");
+    //hide play-again button 
+    hideElement("endgame");
+
+    // set variables 
+    secretWord = "";
+    lettersGuessed = [];
+    // reset difficulty
+    document.getElementsByName("difficulty").forEach(n => { n.checked = false; });
+
+    // update display 
+    updateDisplay(guessesRemaining, lettersGuessed, currentTemplate);
+
+    // prompt user to start game 
+    revealElement("start-game-button");
 }
