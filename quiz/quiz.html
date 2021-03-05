@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Joseph Nagy">
+    <!-- always label your name with a title -->
+    <title>Module 3: Quiz</title>
+    <!-- scale page to fit entire screen, so it properly fills non-desktop devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- DEV-only for easier refreshing: stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="fetch_json.js"></script>
+    <script defer src="quiz.js"></script>
+</head>
+
+<body>
+    <main>
+        <div id="app">
+            <div
+                id="quiz-selection"
+                v-if="showQuizOptions"
+            >
+                <!-- HEADER -->
+                <div id="quiz-selection-header">
+                    <h1>Please select a quiz!</h1>
+                </div>
+                <!-- SELECT A QUIZ -->
+                <div id="quiz-selection-input">
+                    <ul>
+                        <li 
+                            class="quiz-selection-radio" 
+                            v-for="(quizName, i) in jsonQuizNames" 
+                            :key="i"
+                        >
+                            <input 
+                                type="radio" 
+                                name="quizSelection" 
+                                :id="quizName"
+                                :value="quizName"
+                                v-model="currentQuiz"
+                            >{{fnameToTitle[quizName]}}
+                        </li>
+                    </ul>
+                    <input type="button" value="Start Quiz" onclick="app.toggleQuizOptions()">
+                </div>
+            </div>
+
+            <!-- ACTUAL QUIZ BODY  -->
+            <div id="quiz-container" v-if="!showQuizOptions">
+                <div :id="currentQuiz">
+                    <div class="quiz-title">
+                        <h1>{{fnameToTitle[currentQuiz]}} <img 
+                            v-bind:src="'data/img/' + currentQuiz + '.jpg'"
+                            v-bind:alt="fnameToAltText[currentQuiz]"></h1>
+                    </div>
+                
+                    <div class="quiz-questions">
+                        <!-- QUESTIONS -->
+                        <ol>
+                            <li 
+                                class= "question"
+                                v-bind:class="{ correct: checkCorrect(i) && markupAnswers, incorrect: !checkCorrect(i) && markupAnswers}"
+                                v-for="(question, i) in quizzes[currentQuiz]" 
+                                :key="i"
+                            >
+                                <p>{{addQuestionMark(question.question)}}</p>
+                                <!-- ANSWERS -->
+                                <ul>
+                                    <li 
+                                        class="answer" 
+                                        v-for="(answer, j) in question.choices" 
+                                        :key="j"
+                                    >
+                                        <input 
+                                            type="radio" 
+                                            :value="answer" 
+                                            :name="'question'+i"
+                                            v-model="quizzes[currentQuiz][i]['userInput']"
+                                        >
+                                        <label>{{answer}}</label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <button id="submit" v-on:click="submitQuiz()">Submit</button>
+                        <button id="reset" v-on:click="clearChoices()">Clear Choices</button>
+                        <button id="newQuiz" v-on:click="toggleQuizOptions()">New Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<footer>
+    <p v-if="!showQuizOptions">Image Credit: {{fnameToSource[currentQuiz]}}</p>
+</footer>
+</html>

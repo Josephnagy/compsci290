@@ -1,0 +1,48 @@
+/*
+ * Basic styling for trello project 
+ *
+ * @author Joseph Nagy
+ */
+@charset "utf-8";
+
+/* General Styling */
+header {
+    text-align: center;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+/* Class Styling */
+.container{
+    background-size: cover;
+}
+.overdue{
+    background-color: red;
+}
+.due-soon{
+    background-color: yellow;
+}
+.due-later{
+    background-color: green;
+}
+
+.taskList-item {
+    width: fit-content;
+    padding: 0.5%;
+    background-color: white;
+    margin: 1%;
+}
+.title{
+    background-color: white;
+    width: fit-content;
+    margin: 1%;
+}
+.cardContent li{
+    background-color: white;
+    max-width: 50%;
+    padding: 1%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
     <script defer src="usefulWords.js"></script>
-    <script defer src="main.js"></script>
+    <script defer src="hangman.js"></script>
 </head>
 
 <!-- Header -->
@@ -26,83 +26,80 @@
         <!-- Nav Bar -->
         <nav class="nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Hangman Game</a></li>
+                <li><a href="map.html">Map</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
 <body>
-    <div>
+    <div class="title"> 
         <h1>Hangman Game</h1>
     </div>
 
     <!-- Game Details -->
-    <div id="game-description-header">
+    <div id="game-description-header" class="header">
         <h2>Game Description</h2>
     </div>
-    <div id="game-description-content">
-        <p> This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+    <div id="game-description-content" class="content">
+        <p> This is a hangman game, but with a slight twist. It’s designed to be similar to classic-style hangman, except there is a
+        back-end algorithm making the game more difficult! The objective of the game is to guess the hangman word before running
+        out of guesses. If you run out of guesses, you lose!
         </p>
     </div>
 
-    <div id="instructions-header">
+    <div id="instructions-header" class="header">
         <h2>How To Play</h2>
     </div>
-    <div id="instructions-content">
-        <p> This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-            This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
+    <div id="instructions-content" class="content">
+        <p> The first step is to choose a difficulty between easy or hard. The differences between them is easy gives you 16 guesses
+        while hard only gives you 12. After pressing “start game,” you will be prompted to guess a letter in the hangman word.
+        Note: You should only enter lowercase letters as the game will not let you enter anything else! You’ll continue to guess
+        letters until you either win or lose. At the end you will have the option to play again.
         </p>
     </div>
-
+     
     <!-- Game Interaction -->
 
     <!-- Select Difficulty -->
     <div class="difficulty" id="select-difficulty">
-        <p>Please select your level of difficulty</p>
-        <ul>
-            <li>
-                <!-- Easy: user gets 16 guesses -->
-                <input type="radio" name="difficulty" value="16">
-                <label for="12">easy</label>
-            </li>
-            <li>
-                <!-- Hard: user gets 12 guesses -->
-                <input type="radio" name="difficulty" value="12">
-                <label for="8">hard</label>
-            </li>
-        </ul>
+    <p>Please select your level of difficulty</p>
+    <ul>
+        <li>
+            <!-- Easy: user gets 16 guesses -->
+            <input type="radio" name="difficulty" value="16">
+            <label for="16">Easy</label>
+        </li>
+        <li>
+            <!-- Hard: user gets 12 guesses -->
+            <input type="radio" name="difficulty" value="12"> 
+            <label for="12">Hard</label>
+        </li>
+    </ul>
     </div>
 
     <!-- Start Game -->
     <div id="actions">
         <button id="start-game-button" onclick="startGame()">Start Game</button>
-    </div>
+    </div>  
 
     <!-- Hangman Interface -->
-    <div id="guesses">
-        <p># Guesses Remaining: <span id="guesses-remaining"></span> </p>
+    <div id="guesses"> 
+        <p># Guesses Remaining:</p><span id="guesses-remaining"></span> 
     </div>
 
     <div id="letters">
-        <p>Letters not guessed yet: <span id="letters-remaining"></span> </p>
+        <p>Letters not guessed yet:</p><span id="letters-remaining"></span> 
     </div>
 
     <div id="template">
-        <p>Hangman word: <span id="current-template"></span> </p>
+        <p>Hangman word:</p><span id="current-template"></span> 
     </div>
 
     <div id="letter-guess">
-        <label for="guessed-letter">Please guess a letter</label>
-        <input type="text" id="guessed-letter" oninput="this.value = this.value.replace(/[^a-z]/, '')" minlength="1"
-            maxlength="1" size="1">
+        <label for="guessed-letter">Please guess a letter:</label>
+        <input type="text" id="guessed-letter" oninput="this.value = this.value.replace(/[^a-z]/, '')" minlength="1" maxlength="1" size="1">
         <input type="submit" value="Submit" onclick="letterGuess()">
     </div>
 
@@ -110,7 +107,7 @@
         <label>Choose an option</label>
         <input id="play-again" type="submit" value="Play Again" onclick="playAgain()">
     </div>
-
+ 
 </body>
 
 </html>

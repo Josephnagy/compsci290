@@ -1,0 +1,26 @@
+{
+    "capitals_quiz": {
+        "A": "Great job! You really know your capitals!",
+        "B": "Not too shabby! It's evident you've done some studying.",
+        "C": "Obviously you don't travel much!",
+        "D": "Wow that was awful. Do you even know what a national capital is?"
+    },
+    "duke_quiz": {
+        "A": "Awesome job! You're obviously a die-hard Blue Devil!",
+        "B": "Not bad! President Price would be proud.",
+        "C": "That wasn't your best performance. Are you a UNC fan or something?",
+        "D": "Yikes you didn't do so hot! Have you ever even been to Duke?"
+    },
+    "math_quiz": {
+        "A": "You did fantastic! You're like the next Einstein!",
+        "B": "Nice job! Do some practice problems and you might be able to bring your score up.",
+        "C": "What's your major? I hope it's not engineering.",
+        "D": "Maybe you should go back to elementary school..."
+    },
+    "nj_quiz": {
+        "A": "Incredible! You're a Jersey native!",
+        "B": "Not bad, but not great! You probably moved to NJ from somewhere else.",
+        "C": "I bet you're the type of person to do 65 in the left lane.",
+        "D": "GO HOME BENNY"
+    }
+}

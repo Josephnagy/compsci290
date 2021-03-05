@@ -1,0 +1,32 @@
+.correct{
+    background-color: green;
+}
+.incorrect{
+    background-color: red;
+}
+
+img {
+    width: 7%;
+}
+
+h1{
+    background-color: lightgray;
+    border: 4px solid #557A95;
+    padding: 10px;
+    font-size: 30px;
+    width: 30%;
+    text-align: center;
+}
+ol, li {
+    list-style-type: none;
+}
+
+#quiz-selection-input input {
+    margin: auto;
+    margin-left: 13.5%;
+}
+
+#quiz-selection-input ol, #quiz-selection-input li{
+    text-align: center;
+    width: 25%;
+}

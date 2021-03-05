@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Joseph Nagy">
+    <!-- always label your name with a title -->
+    <title>Plotter: Welcome</title>
+    <!-- scale page to fit entire screen, so it properly fills non-desktop devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- DEV-only for easier refreshing: stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- include leaflet API for displaying map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="main_fetch.js"></script>
+    <script defer src="map.js"></script>
+</head>
+
+<!-- Header -->
+<header id="header">
+    <div class="container">
+        <!-- Nav Bar -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Hangman Game</a></li>
+                <li><a href="map.html">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<body>
+    <div class="header">
+        <h1> Defense Spending Data Story <h1>
+    </div>
+    <div class="content">
+        <p> This data visualization models the ratio of every country’s annual defense spending budget (in USD) compared to the
+        number of citizens they have below the poverty line. The purpose of this visualization is to bring into question the
+        amount of money countries spend on military defense and suggest such money is used to help lift their citizens out of
+        poverty. This data “story” does not support or suggest any specific policy solutions to this phenomenon, but instead
+        serves to investigate the relationship between the two values and how it varies across nations.</p>
+
+    <p> The radius of every blue cirlce on the map is directly proportional to the defense-to-poverty-ratio 
+        which is calcualted by dividing a country's defense spending budget (in USD) by the number of citizens 
+        living below the poverty line. 
+    </p>
+    </div>
+    <main>
+        <div id="map">
+            <!-- Area used to display world map using Leaflet -->
+        </div>
+    </main>
+
+    <input type="submit" value="Populate Map" onclick="getData(url)">
+    <input type="submit" value="Reset Map" onclick="clearMap()">
+</body>
+
+</html>

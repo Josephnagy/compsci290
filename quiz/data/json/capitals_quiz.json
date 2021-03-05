@@ -1,0 +1,57 @@
+[
+    {
+        "question": "What is capital of Portugal",
+        "answer": "Lisbon",
+        "choices": [
+            "Seoul",
+            "Lisbon",
+            "Melbourne",
+            "Porto",
+            "Braga"
+        ]
+    },
+    {
+        "question": "What is capital of South Korea",
+        "answer": "Seoul",
+        "choices": [
+            "Daegu",
+            "Jeonju",
+            "Ulsan",
+            "Seoul",
+            "Busan"
+        ]
+    },
+    {
+        "question": "What is capital of Spain",
+        "answer": "Madrid",
+        "choices": [
+            "Madrid",
+            "Barcelona",
+            "Rome",
+            "New Delhi",
+            "Belgium"
+        ]
+    },
+    {
+        "question": "What is capital of Italy",
+        "answer": "Rome",
+        "choices": [
+            "Milan",
+            "Venice",
+            "Florence",
+            "Rome",
+            "Paris"
+        ]
+    },
+    {
+        "question": "What is capital of Denmark",
+        "answer": "Copenhagen",
+        "choices": [
+            "Oslo",
+            "Amsterdam",
+            "Copenhagen",
+            "Stockholm",
+            "Helsinki"
+        ]
+    }
+]

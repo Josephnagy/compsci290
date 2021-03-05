@@ -1,7 +1,7 @@
 /*
  * An example of transforming an uploaded image pixel by pixel.
  *
- * Basic implementatin of a greyscale filter which uses a simple Grayscale  = 0.299R + 0.587G + 0.114B formula 
+ * Basic implementation of a greyscale filter which uses a simple Grayscale  = 0.299R + 0.587G + 0.114B formula 
  * to calculate the RGB values of the greyscaled image 
  * 
  * @author Joseph Nagy

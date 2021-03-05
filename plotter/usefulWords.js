@@ -13,8 +13,8 @@
  * @author Joseph Nagy
  */
 const interactiveIDs = ["guesses", "letters", "template", "letter-guess"];
-const directionalIDs = ["game-description-header", "game-description-content",
-    "instructions-header", "instructions-content"];
+const directionalIDs = ["game-description-header", "game-description-content", 
+"instructions-header", "instructions-content"];
 
 const alphabet = `
 a
