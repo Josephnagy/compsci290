@@ -154,21 +154,21 @@ const EXAMPLE_CARD_4 = {
 
 // TASK LISTS
 const EXAMPLE_TASK_LIST_0 = {
-    listName: "COMPSCI 290",
+    name: "COMPSCI 290",
     watch: false,
     cards: EXAMPLE_TASK_LIST_0_CARDS,
     cardOrderStyle: "alphabetical"
 }
 
 const EXAMPLE_TASK_LIST_1 = {
-    listName: "ENVIRON 201",
+    name: "ENVIRON 201",
     watch: false,
     cards: [EXAMPLE_CARD_4],
     cardOrderStyle: "alphabetical"
 }
 
 const EXAMPLE_TASK_LIST_2 = {
-    listName: "PHYSEDU 132",
+    name: "PHYSEDU 132",
     watch: false,
     cards: [],
     cardOrderStyle: "alphabetical"
