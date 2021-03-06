@@ -162,21 +162,24 @@ const EXAMPLE_TASK_LIST_0 = {
     name: "COMPSCI 290",
     watch: false,
     cards: EXAMPLE_TASK_LIST_0_CARDS,
-    cardOrderStyle: "alphabetical"
+    cardOrderStyle: "alphabetical", 
+    showModal: false
 }
 
 const EXAMPLE_TASK_LIST_1 = {
     name: "ENVIRON 201",
     watch: false,
     cards: [EXAMPLE_CARD_4],
-    cardOrderStyle: "alphabetical"
+    cardOrderStyle: "alphabetical", 
+    showModal: false
 }
 
 const EXAMPLE_TASK_LIST_2 = {
     name: "PHYSEDU 132",
     watch: false,
     cards: [],
-    cardOrderStyle: "alphabetical"
+    cardOrderStyle: "alphabetical", 
+    showModal: false
 }
 
 const EXAMPLE_PROJECT_0_TASKLISTS = [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1, EXAMPLE_TASK_LIST_2];
