@@ -6,23 +6,23 @@
 * @author Joseph Nagy
 */
 
-function getTag(tagName, tagArray){
+function getTag(tagName, tagArray) {
     return tagArray.find(tag => tag.name === tagName);
 }
 
 
 // TAGS 
 EXAMPLE_TAGS_0 = [
-    {name: "Do Today", color: "#FD0000"}, 
-    {name: "Do Tomorrow", color: "#F2FD00" }, 
-    {name: "Do Eventually", color: "#FD00F5"}, 
-    {name: "Complete", color: "#40FD00" }, 
-    {name: "Extension", color: "#FD9100" }
+    { name: "Do Today", color: "#FD0000" },
+    { name: "Do Tomorrow", color: "#F2FD00" },
+    { name: "Do Eventually", color: "#FD00F5" },
+    { name: "Complete", color: "#40FD00" },
+    { name: "Extension", color: "#FD9100" }
 ]
 
 // card tag lists
 const EXAMPLE_CARD_0_TAGS = [
-    getTag("Extension", EXAMPLE_TAGS_0), 
+    getTag("Extension", EXAMPLE_TAGS_0),
     getTag("Complete", EXAMPLE_TAGS_0)
 ];
 const EXAMPLE_CARD_1_TAGS = [
@@ -50,7 +50,7 @@ const EXAMPLE_COMMENT_1 = {
     timestamp: "2021-02-03T12:00",
     description: "Finally finished project"
 }
-const EXAMPLE_CARD_0_COMMENTS = [EXAMPLE_COMMENT_0, EXAMPLE_COMMENT_1]; 
+const EXAMPLE_CARD_0_COMMENTS = [EXAMPLE_COMMENT_0, EXAMPLE_COMMENT_1];
 
 // example card 1
 const EXAMPLE_COMMENT_2 = {
@@ -73,7 +73,7 @@ const EXAMPLE_COMMENT_6 = {
     timestamp: "2021-02-14T16:00",
     description: "Fixed the bugs and finished early!"
 }
-const EXAMPLE_CARD_1_COMMENTS = [EXAMPLE_COMMENT_2, EXAMPLE_COMMENT_3, EXAMPLE_COMMENT_4, EXAMPLE_COMMENT_5, EXAMPLE_COMMENT_6]; 
+const EXAMPLE_CARD_1_COMMENTS = [EXAMPLE_COMMENT_2, EXAMPLE_COMMENT_3, EXAMPLE_COMMENT_4, EXAMPLE_COMMENT_5, EXAMPLE_COMMENT_6];
 
 // example card 2
 const EXAMPLE_COMMENT_7 = {
@@ -101,7 +101,8 @@ const EXAMPLE_CARD_0 = {
     priority: "1",
     tags: EXAMPLE_CARD_0_TAGS,
     comments: EXAMPLE_CARD_0_COMMENTS,
-    checklists: []
+    checklists: [], 
+    showModal: false
 }
 
 const EXAMPLE_CARD_1 = {
@@ -112,7 +113,8 @@ const EXAMPLE_CARD_1 = {
     priority: "1",
     tags: EXAMPLE_CARD_1_TAGS,
     comments: EXAMPLE_CARD_1_COMMENTS,
-    checklists: []
+    checklists: [], 
+    showModal: false
 }
 
 const EXAMPLE_CARD_2 = {
@@ -123,7 +125,8 @@ const EXAMPLE_CARD_2 = {
     priority: "1",
     tags: EXAMPLE_CARD_2_TAGS,
     comments: [EXAMPLE_COMMENT_7],
-    checklists: []
+    checklists: [], 
+    showModal: false
 }
 
 const EXAMPLE_CARD_3 = {
@@ -134,7 +137,8 @@ const EXAMPLE_CARD_3 = {
     priority: "3",
     tags: EXAMPLE_CARD_3_TAGS,
     comments: [],
-    checklists: []
+    checklists: [],
+    showModal: false
 }
 
 EXAMPLE_TASK_LIST_0_CARDS = [EXAMPLE_CARD_0, EXAMPLE_CARD_1, EXAMPLE_CARD_2, EXAMPLE_CARD_3];
@@ -148,7 +152,8 @@ const EXAMPLE_CARD_4 = {
     priority: "2",
     tags: EXAMPLE_CARD_4_TAGS,
     comments: [EXAMPLE_COMMENT_8],
-    checklists: []
+    checklists: [],
+    showModal: false
 }
 
 
@@ -178,11 +183,11 @@ const EXAMPLE_PROJECT_0_TASKLISTS = [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1, E
 
 // PROJECTS
 const EXAMPLE_PROJECT_0 = {
-    name: "Schoolwork", 
+    name: "Schoolwork",
     backgroundImage: "beach.jpg",
     tags: EXAMPLE_TAGS_0,
     boardDescription: "This Trello board is used to organize the schoolwork for my classes",
-    projectDeadline: "", 
-    priority: 2, 
+    projectDeadline: "",
+    priority: 2,
     taskLists: EXAMPLE_PROJECT_0_TASKLISTS
 }
