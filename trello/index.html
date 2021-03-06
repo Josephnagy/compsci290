@@ -13,7 +13,14 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <!-- load required Bootstrap and BootstrapVue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <!-- load Vue followed by BootstrapVue -->
     <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <!-- load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.js"></script>
     <!-- Link the stylesheet -->
     <link rel="stylesheet" href="style.css">
     <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
@@ -38,51 +45,47 @@
             :style="{ backgroundImage: 'url(data/background-images/' + project.backgroundImage + ')' }"
         >
             <main>
-                <div class="columns">
-                    <!-- LIST OF TASK LISTS -->
-                    <ul>
-                        <!-- INDIVIDUAL TASK LIST -->
-                        <li v-for="(taskList, i) in project.taskLists" :key="i">
-                            <span class="title" >LIST NAME: {{taskList.listName}}</span>
-                            <!-- LIST OF CARDS -->
-                            <ul
-                                v-if="taskList.cards.length > 0"
-                            >
-                                <li 
-                                    class="taskList-item" 
-                                    v-for="(card, j) in taskList.cards" 
-                                    :key="j"
-                                    :style="{backgroundColor: card.backgroundColor}"
+                <!-- Group of taskLists -->
+                <b-card-group deck>
+                    <!-- Single Task List -->
+                    <b-card
+                        img-src="https://placekitten.com/1000/300" 
+                        img-alt="Card image" 
+                        img-top
+                        v-for="(taskList, i) in project.taskLists"
+                    >
+                        <!-- taskList BODY-->
+                        <b-card-body>
+                            {{taskList.name}}
+                            <!-- Group of cards -->
+                            <b-card-group deck>
+                                <!-- Single card -->
+                                <b-card
+                                    img-src="https://placekitten.com/1000/300" 
+                                    img-alt="Card image" 
+                                    img-top
+                                    v-for="(card, j) in taskList.cards"
                                 >
-                                    <p>CARD NAME: {{card.name}}</p>
-                                    <!-- CARD DETAILS -->
-                                    <ul class="cardContent">
-                                        <li>{{card.comments.length}} Comment(s)</li>
-                                        <ul>
-                                            <li v-for="(comment, t) in card.comments" :key="c">
-                                                <span>{{displayDate(comment.timestamp)}}</span>
-                                                <span>{{comment.description}}</span>
-                                            </li>
-                                        </ul>
-                                        <li>DESCRIPTION: {{card.description}}</li>
-                                        <li>DEADLINE: <span :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span></li> 
-                                        <li>PRIORITY LEVEL: {{displayPriority(card.priority)}}</li>
-                                        <li>{{card.tags.length}} Tag(s)
-                                            <ul>
-                                                <li v-for="(tag, t) in card.tags" :key="t">
-                                                    <span class="tag" :style="{backgroundColor: tag.color}">{{tag.name}}</span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul v-else>
-                                <li class="taskList-item" > {{taskList.name}} HAS NO CARDS</li>  
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                                    <!-- card BODY-->
+                                    <b-card-body>
+                                    {{card.name}}
+                            
+                                    </b-card-body>
+                            
+                                    <!-- card FOOTER-->
+                                    <b-card-footer>
+                            
+                                    </b-card-footer>
+                                </b-card>  
+                            </b-card-group>
+                        </b-card-body>
+
+                        <!-- Single Task List FOOTER-->
+                        <b-card-footer>
+                        
+                        </b-card-footer>
+                    </b-card>
+                </b-card-group>
             </main>
         </div>
     </div>
