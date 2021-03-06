@@ -58,14 +58,29 @@
                                             :key="c"
                                         >
                                             <b-card :title="card.name">
+                                                <!-- card details -->
+                                                <div class="card-body">
+                                                    <p>{{card.description}}</p>
+                                                    <p>Deadline: {{ card.deadline }}</p>
+                                                </div>
+
 
                                                 <b-button v-b-modal="'modal'+t+c" variant="info" block>Open Task</b-button>
 
+                                                <!-- MODAL -->
                                                 <b-modal 
                                                     :id="'modal'+t+c" 
                                                     :title="card.name"
+                                                    ok-only
+                                                    ok-title="Close Task"
                                                 > 
-                                                    <p>{{card.name}}</p>
+                                                    <label><b>Card Title</b></label>
+                                                    <input 
+                                                        v-model="project.taskLists[t].cards[c].name" 
+                                                        style="width: 100%" 
+                                                        type="text"
+                                                    ></input>
+                                                    <hr />
                                                 </b-modal>
 
 
