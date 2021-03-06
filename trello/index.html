@@ -34,54 +34,54 @@
         <header>
             <h1>{{project.name}}</h1>
             <h3>{{project.boardDescription}}</h3>
-            <input 
-                type="text"
-                placeholder="Search Trello Board"
-                v-model="searchText"
-                > 
+            <input type="text" placeholder="Search Trello Board" v-model="searchText">
         </header>
-        <div 
-            class="container" 
-            :style="{ backgroundImage: 'url(data/background-images/' + project.backgroundImage + ')' }"
-        >
+        <div class="container"
+            :style="{ backgroundImage: 'url(data/background-images/' + project.backgroundImage + ')' }">
             <main>
                 <!-- Board Container -->
-                <b-container> 
+                <b-container>
                     <!-- single row of taskLists -->
-                    <b-row
-                        :cols="project.taskLists.length" 
-                    > 
-                        <b-col
+                    <b-row 
+                        :cols="project.taskLists.length"
+                    >
+                        <b-col 
                             v-for="(taskList, t) in project.taskLists"
+                            :key="t"
                         >
                             <!-- taskList CARD -->
-                            <b-card 
-                                :title="taskList.name"
-                            >
-                                <b-card-body> 
+                            <b-card :title="taskList.name">
+                                <b-card-body>
                                     <b-row cols="1"> <!-- one column because cards should be stacked -->
-                                        <b-col
+                                        <b-col 
                                             v-for="(card, c) in taskList.cards"
+                                            :key="c"
                                         >
                                             <b-card :title="card.name">
+                                                <b-card-footer>
+                                                    <b-btn 
+                                                        @click="windowAlert(card.name)" 
+                                                        variant="info" 
+                                                        block
+                                                    >Open Task</b-btn>
+                                                </b-card-footer> 
+
                                             </b-card>
 
-                                        </b-col> 
-                                        
-                                    </b-row>
-                                    
+                                        </b-col>
 
+                                    </b-row>
 
 
                                 </b-card-body>
-                                
-                            </b-card> 
+
+                            </b-card>
 
                         </b-col>
 
-                    </b-row>    
-                </b-container>   
-            </main> 
+                    </b-row>
+                </b-container>
+            </main>
         </div>
     </div>
 </body>
