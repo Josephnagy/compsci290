@@ -58,12 +58,19 @@
                                             :key="c"
                                         >
                                             <b-card :title="card.name">
+
+                                                <b-button v-b-modal="'modal'+t+c" variant="info" block>Open Task</b-button>
+
+                                                <b-modal 
+                                                    :id="'modal'+t+c" 
+                                                    :title="card.name"
+                                                > 
+                                                    <p>{{card.name}}</p>
+                                                </b-modal>
+
+
                                                 <b-card-footer>
-                                                    <b-btn 
-                                                        @click="windowAlert(card.name)" 
-                                                        variant="info" 
-                                                        block
-                                                    >Open Task</b-btn>
+                                                    
                                                 </b-card-footer> 
 
                                             </b-card>
