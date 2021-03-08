@@ -19,9 +19,9 @@ class Comment {
 }
 
 class Card {
-    constructor(name, backgroundColor, description, deadline, priority, tags, comments, checklists, showModal) {
+    constructor(name, color, description, deadline, priority, tags, comments, checklists) {
         this.name = name;
-        this.backgroundColor = backgroundColor;
+        this.color = color;
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
