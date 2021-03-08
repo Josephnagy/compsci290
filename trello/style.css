@@ -19,6 +19,7 @@ ul {
     background-size: cover;
     max-width: none;
 }
+/* Reactive background colors for deadlines,priority,etc */
 .overdue{
     background-color: red;
 }
@@ -39,6 +40,13 @@ ul {
     background-color: white;
     width: fit-content;
     margin: 1%;
+}
+
+/* CARD styling */
+.card-content{
+    background-color: white;
+    border-radius: 10px;
+    padding: 2%;
 }
 .cardContent li{
     background-color: white;
