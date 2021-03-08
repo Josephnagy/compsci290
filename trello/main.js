@@ -104,6 +104,10 @@
          deleteCard(t, c) {
              this.taskLists[t].cards.splice(c, 1);
          },
+         // deletes taskList based on index 
+         deleteTaskList(t) {
+             this.taskLists.splice(t, 1);
+         },
          // resets newCard fields
          resetNewCard() {
             this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false };
