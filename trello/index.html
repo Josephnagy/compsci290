@@ -62,7 +62,7 @@
                                                 <!-- card details -->
                                                 <div class="card-content">
                                                     <p>{{card.description}}</p>
-                                                    <p>Deadline: {{ displayDate(card.deadline) }}</p>
+                                                    <p>Deadline: </p><span :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
                                                 </div>
 
                                                 <!-- card FOOTER -->
@@ -71,7 +71,7 @@
                                                     <b-button 
                                                         v-b-modal="'modal'+t+c" 
                                                         variant="info" 
-                                                        block>Edit Card</b-button>
+                                                        block>View Card</b-button>
                                                     <!-- MODAL allows user to edit card content -->
                                                     <b-modal 
                                                         :id="'modal'+t+c" 
@@ -81,10 +81,7 @@
                                                     >
                                                         <!-- edit title -->
                                                         <label><b>Card Title</b></label>
-                                                        <input 
-                                                            v-model="taskLists[t].cards[c].name" 
-                                                            style="width: 100%" 
-                                                            type="text"></input>
+                                                        <input v-model="taskLists[t].cards[c].name" style="width: 100%" type="text"></input>
                                                         <hr />
 
                                                         <!-- edit description -->
@@ -92,9 +89,33 @@
                                                         <textarea v-model="taskLists[t].cards[c].description" style="width: 100%" type="text"></textarea>
                                                         <hr />
 
+                                                        <!-- edit color -->
+                                                        <label><b>Card Color</b></label>
+                                                        <input v-model="taskLists[t].cards[c].color" style="width: 100%" type="color"></input>
+                                                        <hr />
+
+                                                        <!-- edit deadline -->
+                                                        <label><b>Card Deadline</b></label>
+                                                        <input v-model="taskLists[t].cards[c].deadline" style="width: 100%" type="datetime-local"></input>
+                                                        <hr />
+
+                                                        <!-- edit priority -->
+                                                        <label><b>Card Priority</b></label>
+                                                        <select name="priority" id="'priority'+t+c" v-model="taskLists[t].cards[c].priority">
+                                                            <option value="1">High Priority</option>
+                                                            <option value="2">Medium Priority</option>
+                                                            <option value="3">Low Priority</option>
+                                                        </select>
+                                                        <hr />
+
                                                     </b-modal>
-                                                    <!-- delete button -->
-                                                    <b-button variant="danger" block>Delete Card</b-button>
+
+                                                    <!-- Delete card button -->
+                                                    <b-button 
+                                                        variant="danger" 
+                                                        block
+                                                        @click="deleteCard(t, c)"
+                                                    >Delete Card</b-button>
                                                     
                                                 </b-card-footer> 
 
@@ -155,6 +176,10 @@
                                         <hr />
                                 
                                 </b-modal>
+
+                                <!-- Delete taskList button -->
+                                <b-button variant="danger" block>Delete List</b-button>
+                                
                                 </b-card-footer>    
 
                             </b-card>

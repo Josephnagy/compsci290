@@ -100,6 +100,10 @@
              this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false};
              this.taskLists[i].createNewCard = false;
          }, 
+         // deletes card from taskList based on indicies
+         deleteCard(t, c) {
+             this.taskLists[t].cards.splice(c, 1);
+         },
          // resets newCard fields
          resetNewCard() {
             this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false };
