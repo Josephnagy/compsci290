@@ -22,6 +22,8 @@ Daily Hours Spent: pt1: 15hr
 People consulted:
 
 Resources used:
+- Sorting array of objects alphabetically by a single field: https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array
+
 
 Asset attributions:
 
