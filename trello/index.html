@@ -44,10 +44,10 @@
                 <b-container>
                     <!-- single row of taskLists -->
                     <b-row 
-                        :cols="currentProject.taskLists.length"
+                        :cols="taskLists.length"
                     >
                         <b-col 
-                            v-for="(taskList, t) in currentProject.taskLists"
+                            v-for="(taskList, t) in taskLists"
                             :key="t"
                         >
                             <!-- taskList CARD -->
@@ -72,7 +72,7 @@
                                                         v-b-modal="'modal'+t+c" 
                                                         variant="info" 
                                                         block>Open Card</b-button>
-                                                    <!-- MODAL -->
+                                                    <!-- MODAL allows user to edit card content -->
                                                     <b-modal 
                                                         :id="'modal'+t+c" 
                                                         :title="card.name" 
@@ -81,7 +81,7 @@
                                                     >
                                                         <label><b>Card Title</b></label>
                                                         <input 
-                                                            v-model="currentProject.taskLists[t].cards[c].name" 
+                                                            v-model="taskLists[t].cards[c].name" 
                                                             style="width: 100%" 
                                                             type="text"></input>
                                                         <hr />
@@ -99,6 +99,26 @@
 
 
                                 </b-card-body>
+                                <!-- taskList CARD FOOTER -->
+                                <b-card-footer> 
+                                    <!-- button to open create card modal  -->
+                                    <b-button 
+                                        v-b-modal="'modal'+t" 
+                                        variant="info" 
+                                        block>Create Card</b-button>
+
+                                    <b-modal
+                                        :id="'modal'+t"
+                                        @ok="createCard(t)"
+                                        title="Create New Card"
+                                        ok-title="Create Card"
+                                    >
+                                        <label><b>Card Title</b></label>
+                                        
+                                        <hr />
+                                
+                                </b-modal>
+                                </b-card-footer>    
 
                             </b-card>
 
