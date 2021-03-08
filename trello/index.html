@@ -26,27 +26,28 @@
     <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
     <script defer src="example_data.js"></script>
     <script defer src="main.js"></script>
+    <script defer src="classes.js"></script>
 </head>
 
 <body>
     <div id="app">
         <!-- Page Header -->
         <header>
-            <h1>{{project.name}}</h1>
-            <h3>{{project.boardDescription}}</h3>
+            <h1>{{currentProject.name}}</h1>
+            <h3>{{currentProject.boardDescription}}</h3>
             <input type="text" placeholder="Search Trello Board" v-model="searchText">
         </header>
         <div class="container"
-            :style="{ backgroundImage: 'url(data/background-images/' + project.backgroundImage + ')' }">
+            :style="{ backgroundImage: 'url(data/background-images/' + currentProject.backgroundImage + ')' }">
             <main>
                 <!-- Board Container -->
                 <b-container>
                     <!-- single row of taskLists -->
                     <b-row 
-                        :cols="project.taskLists.length"
+                        :cols="currentProject.taskLists.length"
                     >
                         <b-col 
-                            v-for="(taskList, t) in project.taskLists"
+                            v-for="(taskList, t) in currentProject.taskLists"
                             :key="t"
                         >
                             <!-- taskList CARD -->
@@ -64,27 +65,29 @@
                                                     <p>Deadline: {{ card.deadline }}</p>
                                                 </div>
 
-
-                                                <b-button v-b-modal="'modal'+t+c" variant="info" block>Open Task</b-button>
-
-                                                <!-- MODAL -->
-                                                <b-modal 
-                                                    :id="'modal'+t+c" 
-                                                    :title="card.name"
-                                                    ok-only
-                                                    ok-title="Close Task"
-                                                > 
-                                                    <label><b>Card Title</b></label>
-                                                    <input 
-                                                        v-model="project.taskLists[t].cards[c].name" 
-                                                        style="width: 100%" 
-                                                        type="text"
-                                                    ></input>
-                                                    <hr />
-                                                </b-modal>
-
-
+                                                <!-- card FOOTER -->
                                                 <b-card-footer>
+                                                    <!-- modal button -->
+                                                    <b-button 
+                                                        v-b-modal="'modal'+t+c" 
+                                                        variant="info" 
+                                                        block>Open Card</b-button>
+                                                    <!-- MODAL -->
+                                                    <b-modal 
+                                                        :id="'modal'+t+c" 
+                                                        :title="card.name" 
+                                                        ok-only 
+                                                        ok-title="Close Task"
+                                                    >
+                                                        <label><b>Card Title</b></label>
+                                                        <input 
+                                                            v-model="currentProject.taskLists[t].cards[c].name" 
+                                                            style="width: 100%" 
+                                                            type="text"></input>
+                                                        <hr />
+                                                    </b-modal>
+                                                    <!-- delete button -->
+                                                    <b-button variant="danger" block>Delete Card</b-button>
                                                     
                                                 </b-card-footer> 
 
