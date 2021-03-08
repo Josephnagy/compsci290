@@ -90,6 +90,38 @@
          windowAlert(s){
              window.alert(s);
          }, 
+         // takes taskList index and sortingCriterion, returns taskList[t].cards sorted based on sortingCriterion
+         sortCards(t, sortingCriterion){
+             sortedCards = this.taskLists[t].cards;
+             // sort alpbabetically
+             if (sortingCriterion === "alphabetical"){
+                 sortedCards.sort(function (a, b) {
+                     let textA = a.name.toUpperCase();
+                     let textB = b.name.toUpperCase();
+                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                 });
+            // sort by priority (high priority first, low priority last)
+             } else if (sortingCriterion === "priority"){
+                 sortedCards.sort(function (a, b) { 
+                     let priorityA = parseInt(a.priority);
+                     let priorityB = parseInt(b.priority);
+                     return priorityA - priorityB;
+                 });
+            // sort by deadline (earliest deadlines first)
+             } else if (sortingCriterion === "deadline"){
+                 sortedCards.sort(function (a, b) {
+                     // get current time 
+                     let now = new Date();
+                     // convert to ISOString 
+                     now = app.javascriptDateObjectToISOString(now); // had to use app instead of this 
+                     let hoursUntilDueA = app.hoursBetweenDates(now, a.deadline);
+                     let hoursUntilDueB = app.hoursBetweenDates(now, b.deadline)
+                     return hoursUntilDueA - hoursUntilDueB;
+                 });
+             }
+             // save sorted cards 
+             this.taskLists[t].cards = sortedCards;
+         },
          // creates a new card and adds it to a specific taskList based on the taskList index (i)
          createCard(i) {
              // create new card using constructor 
@@ -121,9 +153,9 @@
          // duplicate an entire list, append to end of taskLists
          duplicateTaskList(t) {
              let currentList = this.taskLists[t];
-             let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color);
+             let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color, currentList.cards);
              this.taskLists.push(duplicatedTaskList);
-         },
+         }
      }
  })
 // connect Vue app instance with HTML element with id="app" to display it
