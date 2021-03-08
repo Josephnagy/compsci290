@@ -8,7 +8,28 @@
      data(){
          return {
              searchText: "",
-             project: EXAMPLE_PROJECT_0 
+             currentProject: EXAMPLE_PROJECT_0, 
+             taskLists: [], 
+             cards: [], 
+             newCard: {
+                 name: "",
+                 color: "",
+                 description: "",
+                 deadline: "",
+                 priority: "",
+                 tags: [],
+                 comments: [],
+                 checklists: [],
+                 showModal: false
+             }, 
+             newTaskList: {
+                 name: "",
+                 watch: false,
+                 color: "",
+                 cards: [],
+                 cardOrderStyle: "alphabetical",
+                 showModal: false
+             }
          }
      }, 
      methods: {
@@ -59,8 +80,25 @@
              d2 = Date.parse(date2); 
              return (d2 - d1) / (60 * 60 * 1000); 
          }, 
-
+         windowAlert(s){
+             window.alert(s);
+         }, 
+         // creates a new card and adds it to a specific taskList based on the index (i)
+         createCard(i) {
+             let newCardToAdd = new Card(this.newCard.name, 
+                                         this.newCard.color, 
+                                         this.newCard.description, 
+                                         this.newCard.deadline, 
+                                         this.newCard.priority, 
+                                         this.newCard.tags, 
+                                         [], // comments 
+                                         [], // checklists 
+                                         );
+             this.columns[i].cards.push(cardToAdd);
+             this.newCard = { name: "", color: "", description: "", deadline: moment().toISOString(), tags: [], comments: [] }
+             this.columns[i].createNewCard = false;
+         },
      }
  })
-
+// connect Vue app instance with HTML element with id="app" to display it
 app.$mount('#app');
