@@ -111,7 +111,13 @@
          // resets newCard fields
          resetNewCard() {
             this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false };
-         }
+         }, 
+         // duplicate an entire card, append to end of taskList
+         duplicateCard(t, c) {
+             let currentCard = this.taskLists[t].cards[c];
+             let duplicatedCard = new Card(currentCard.name, currentCard.color, currentCard.description, currentCard.deadline, currentCard.priority, currentCard.tags, currentCard.comments, currentCard.checkLists);
+             this.taskLists[t].cards.push(duplicatedCard);
+         },
      }
  })
 // connect Vue app instance with HTML element with id="app" to display it
