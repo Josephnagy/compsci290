@@ -10,7 +10,11 @@ Start Date: 3/1/2021
 
 Finish Date: 
 
-Daily Hours Spent: 11
+Daily Hours Spent: pt1: 15hr 
+- 3/6: 3 hours 
+- 3/7: 2 hours 
+- 3/8: 6pm-
+
 
 
 ### Collaboration
