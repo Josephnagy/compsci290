@@ -118,6 +118,12 @@
              let duplicatedCard = new Card(currentCard.name, currentCard.color, currentCard.description, currentCard.deadline, currentCard.priority, currentCard.tags, currentCard.comments, currentCard.checkLists);
              this.taskLists[t].cards.push(duplicatedCard);
          },
+         // duplicate an entire list, append to end of taskLists
+         duplicateTaskList(t) {
+             let currentList = this.taskLists[t];
+             let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color);
+             this.taskLists.push(duplicatedTaskList);
+         },
      }
  })
 // connect Vue app instance with HTML element with id="app" to display it

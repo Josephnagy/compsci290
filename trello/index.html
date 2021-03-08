@@ -151,6 +151,7 @@
                                         block
                                     >Edit List</b-button>
 
+                                    <!-- edit taskList MODAL -->
                                     <b-modal 
                                         :id="'taskListmodal'+t" 
                                         @ok="" 
@@ -159,8 +160,13 @@
                                         ok-title="Save Changes"
                                     > 
                                         <p>this is the edit list modal</p>
+                                        <b-button 
+                                            variant="dark" 
+                                            block 
+                                            @click="duplicateTaskList(t)">Duplciate List</b-button>
                                     </b-modal>
 
+                                    <!-- taskList CARD FOOTER (cont...) -->
                                     <!-- button to open create card modal  -->
                                     <b-button 
                                         v-b-modal="'modal'+t" 
