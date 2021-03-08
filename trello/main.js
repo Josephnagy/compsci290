@@ -37,13 +37,17 @@
      methods: {
          // helper function that takes ISO date('YYYY-MM-DDThh:mm') and returns a display string for dates
          displayDate(date){
-             dateComponents = date.split('-');
-             year = dateComponents[0]; 
-             month = dateComponents[1];
-             day = dateComponents[2].substring(0,2);
-             time = dateComponents[2].substring(3); 
-             d = [month, day, year].join("/")
-             return d + " @ " + time;
+             if(date === undefined){
+                 return "undefined time"
+             } else {
+                 dateComponents = date.split('-');
+                 year = dateComponents[0];
+                 month = dateComponents[1];
+                 day = dateComponents[2].substring(0, 2);
+                 time = dateComponents[2].substring(3);
+                 d = [month, day, year].join("/")
+                 return d + " @ " + time;
+             }
          }, 
          displayPriority(priority){
              priorityDict = {1: "Top Priority", 2: "Medium Priority", 3: "Low Priority"}; 
@@ -82,6 +86,7 @@
              d2 = Date.parse(date2); 
              return (d2 - d1) / (60 * 60 * 1000); 
          }, 
+         // test function used to check that a function call is working properly
          windowAlert(s){
              window.alert(s);
          }, 
@@ -94,6 +99,10 @@
              // reset newCard fields 
              this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false};
              this.taskLists[i].createNewCard = false;
+         }, 
+         // resets newCard fields
+         resetNewCard() {
+            this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false };
          }
      }
  })
