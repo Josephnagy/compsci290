@@ -47,8 +47,9 @@ class Project {
 class TaskList {
     constructor(name, cardOrderStyle, color) {
         this.name = name;
+        this.color = color;
         this.watch = false;
-        this.cards = [];
+        this.cards = []; // new taskList will start without cards
         this.cardOrderStyle = cardOrderStyle; 
         this.showModal = false;
     }
