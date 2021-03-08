@@ -9,8 +9,8 @@
          return {
              searchText: "",
              currentProject: EXAMPLE_PROJECT_0, 
-             taskLists: [], 
-             cards: [],
+             taskLists: EXAMPLE_PROJECT_0.taskLists, 
+             cards: EXAMPLE_PROJECT_0.cards, 
              createNewTaskList: false,  
              newCard: {
                  name: "",
@@ -85,7 +85,7 @@
          windowAlert(s){
              window.alert(s);
          }, 
-         // creates a new card and adds it to a specific taskList based on the index (i)
+         // creates a new card and adds it to a specific taskList based on the taskList index (i)
          createCard(i) {
              // create new card using constructor 
              let newCardToAdd = new Card(this.newCard.name, this.newCard.color, this.newCard.description, this.newCard.deadline, this.newCard.priority, this.newCard.tags, [],  [], );
