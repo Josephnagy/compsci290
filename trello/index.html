@@ -58,11 +58,11 @@
                                             v-for="(card, c) in taskList.cards"
                                             :key="c"
                                         >
-                                            <b-card :title="card.name">
+                                            <b-card :title="card.name" :style="{backgroundColor: card.color}">
                                                 <!-- card details -->
                                                 <div class="card-body">
                                                     <p>{{card.description}}</p>
-                                                    <p>Deadline: {{ card.deadline }}</p>
+                                                    <p>Deadline: {{ displayDate(card.deadline) }}</p>
                                                 </div>
 
                                                 <!-- card FOOTER -->
@@ -113,8 +113,24 @@
                                         title="Create New Card"
                                         ok-title="Create Card"
                                     >
+                                        <!-- card title  -->
                                         <label><b>Card Title</b></label>
-                                        
+                                        <input v-model="newCard.name" style="width: 100%" type="text"></input>
+                                        <hr />
+
+                                        <!-- card description  -->
+                                        <label><b>Card Description</b></label>
+                                        <input v-model="newCard.description" style="width: 100%" type="text"></input>
+                                        <hr />
+
+                                        <!-- card color  -->
+                                        <label><b>Card Color</b></label>
+                                        <input v-model="newCard.color" style="width: 100%" type="color"></input>
+                                        <hr />
+
+                                        <!-- card deadline  -->
+                                        <label><b>Card Deadline</b></label>
+                                        <input v-model="newCard.deadline" style="width: 100%" type="datetime-local"></input>
                                         <hr />
                                 
                                 </b-modal>
