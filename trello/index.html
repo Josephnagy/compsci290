@@ -51,7 +51,7 @@
                             :key="t"
                         >
                             <!-- taskList CARD -->
-                            <b-card :title="taskList.name">
+                            <b-card :title="taskList.name" :style="{backgroundColor: taskList.color}">
                                 <b-card-body>
                                     <b-row cols="1"> <!-- one column because cards should be stacked -->
                                         <b-col 
@@ -62,7 +62,7 @@
                                                 <!-- card details -->
                                                 <div class="card-content">
                                                     <p>{{card.description}}</p>
-                                                    <p>Deadline: </p><span :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
+                                                    <p>Deadline: </p><span class="deadline" :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
                                                 </div>
 
                                                 <!-- card FOOTER -->
@@ -129,12 +129,29 @@
                                 </b-card-body>
                                 <!-- taskList CARD FOOTER -->
                                 <b-card-footer> 
+                                    <!-- button to edit taskList -->
+                                    <b-button 
+                                        v-b-modal="'taskListmodal'+t" 
+                                        variant="dark" 
+                                        block
+                                    >Edit List</b-button>
+
+                                    <b-modal 
+                                        :id="'taskListmodal'+t" 
+                                        @ok="" 
+                                        @cancel="" 
+                                        title="Edit List" 
+                                        ok-title="Save Changes"
+                                    > 
+                                        <p>this is the edit list modal</p>
+                                    </b-modal>
+
                                     <!-- button to open create card modal  -->
                                     <b-button 
                                         v-b-modal="'modal'+t" 
                                         variant="info" 
                                         block>Create Card</b-button>
-
+                                    <!-- create card modal -->
                                     <b-modal
                                         :id="'modal'+t"
                                         @ok="createCard(t)"
@@ -178,7 +195,11 @@
                                 </b-modal>
 
                                 <!-- Delete taskList button -->
-                                <b-button variant="danger" block>Delete List</b-button>
+                                <b-button 
+                                    variant="danger" 
+                                    block
+                                    @click="deleteTaskList(t)"
+                                >Delete List</b-button>
                                 
                                 </b-card-footer>    
 
