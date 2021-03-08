@@ -20,6 +20,10 @@ ul {
     max-width: none;
 }
 /* Reactive background colors for deadlines,priority,etc */
+.deadline{
+    padding: 1%;
+    border-radius: 5px;
+}
 .overdue{
     background-color: red;
 }
