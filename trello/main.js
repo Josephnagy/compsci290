@@ -10,7 +10,8 @@
              searchText: "",
              currentProject: EXAMPLE_PROJECT_0, 
              taskLists: [], 
-             cards: [], 
+             cards: [],
+             createNewTaskList: false,  
              newCard: {
                  name: "",
                  color: "",
@@ -28,7 +29,8 @@
                  color: "",
                  cards: [],
                  cardOrderStyle: "alphabetical",
-                 showModal: false
+                 showModal: false, 
+                 createNewCard: false
              }
          }
      }, 
@@ -85,19 +87,14 @@
          }, 
          // creates a new card and adds it to a specific taskList based on the index (i)
          createCard(i) {
-             let newCardToAdd = new Card(this.newCard.name, 
-                                         this.newCard.color, 
-                                         this.newCard.description, 
-                                         this.newCard.deadline, 
-                                         this.newCard.priority, 
-                                         this.newCard.tags, 
-                                         [], // comments 
-                                         [], // checklists 
-                                         );
-             this.columns[i].cards.push(cardToAdd);
-             this.newCard = { name: "", color: "", description: "", deadline: moment().toISOString(), tags: [], comments: [] }
-             this.columns[i].createNewCard = false;
-         },
+             // create new card using constructor 
+             let newCardToAdd = new Card(this.newCard.name, this.newCard.color, this.newCard.description, this.newCard.deadline, this.newCard.priority, this.newCard.tags, [],  [], );
+             // push new card to the list of taskLists cards
+             this.taskLists[i].cards.push(newCardToAdd);
+             // reset newCard fields 
+             this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false};
+             this.taskLists[i].createNewCard = false;
+         }
      }
  })
 // connect Vue app instance with HTML element with id="app" to display it
