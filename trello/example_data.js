@@ -95,7 +95,7 @@ const EXAMPLE_COMMENT_8 = {
 // example task list 0 
 const EXAMPLE_CARD_0 = {
     name: "Introductions Project",
-    backgroundColor: "#915D1C",
+    color: "#915D1C",
     description: `This project is intended to introduce you to your classmates and the Teaching Team.`,
     deadline: "2021-02-02T23:59",
     priority: "1",
@@ -107,7 +107,7 @@ const EXAMPLE_CARD_0 = {
 
 const EXAMPLE_CARD_1 = {
     name: "Plotter Project",
-    backgroundColor: "#FE4FDE",
+    color: "#FE4FDE",
     description: "This project is intended for you to learn the basics of JavaScript programming using data.",
     deadline: "2021-02-16T23:59",
     priority: "1",
@@ -119,7 +119,7 @@ const EXAMPLE_CARD_1 = {
 
 const EXAMPLE_CARD_2 = {
     name: "Trello Project Part 2",
-    backgroundColor: "#423F5F",
+    color: "#423F5F",
     description: "This project is intended for you to learn the basics of the JavaScript framework Vue to create a reactive, data-oriented, web page.",
     deadline: "2021-03-08T23:59",
     priority: "1",
@@ -131,7 +131,7 @@ const EXAMPLE_CARD_2 = {
 
 const EXAMPLE_CARD_3 = {
     name: "Final Project Pitch",
-    backgroundColor: "#33827E",
+    color: "#33827E",
     description: "TBD",
     deadline: "2021-03-23T23:59",
     priority: "3",
@@ -146,7 +146,7 @@ EXAMPLE_TASK_LIST_0_CARDS = [EXAMPLE_CARD_0, EXAMPLE_CARD_1, EXAMPLE_CARD_2, EXA
 // example task list 1 
 const EXAMPLE_CARD_4 = {
     name: "Biodiversity Memo",
-    backgroundColor: "#24B869",
+    color: "#24B869",
     description: "Write a memo discussing the importances of biodiversity as it relates to ecological services.",
     deadline: "2021-03-17T8:30",
     priority: "2",
@@ -160,6 +160,7 @@ const EXAMPLE_CARD_4 = {
 // TASK LISTS
 const EXAMPLE_TASK_LIST_0 = {
     name: "COMPSCI 290",
+    color: "",
     watch: false,
     cards: EXAMPLE_TASK_LIST_0_CARDS,
     cardOrderStyle: "alphabetical", 
@@ -168,6 +169,7 @@ const EXAMPLE_TASK_LIST_0 = {
 
 const EXAMPLE_TASK_LIST_1 = {
     name: "ENVIRON 201",
+    color: "",
     watch: false,
     cards: [EXAMPLE_CARD_4],
     cardOrderStyle: "alphabetical", 
@@ -176,6 +178,7 @@ const EXAMPLE_TASK_LIST_1 = {
 
 const EXAMPLE_TASK_LIST_2 = {
     name: "PHYSEDU 132",
+    color: "",
     watch: false,
     cards: [],
     cardOrderStyle: "alphabetical", 
