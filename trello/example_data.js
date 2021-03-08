@@ -160,7 +160,7 @@ const EXAMPLE_CARD_4 = {
 // TASK LISTS
 const EXAMPLE_TASK_LIST_0 = {
     name: "COMPSCI 290",
-    color: "",
+    color: "#aaaaaa",
     watch: false,
     cards: EXAMPLE_TASK_LIST_0_CARDS,
     cardOrderStyle: "alphabetical", 
@@ -169,7 +169,7 @@ const EXAMPLE_TASK_LIST_0 = {
 
 const EXAMPLE_TASK_LIST_1 = {
     name: "ENVIRON 201",
-    color: "",
+    color: "#aaaaaa",
     watch: false,
     cards: [EXAMPLE_CARD_4],
     cardOrderStyle: "alphabetical", 
@@ -178,7 +178,7 @@ const EXAMPLE_TASK_LIST_1 = {
 
 const EXAMPLE_TASK_LIST_2 = {
     name: "PHYSEDU 132",
-    color: "",
+    color: "#aaaaaa",
     watch: false,
     cards: [],
     cardOrderStyle: "alphabetical", 
