@@ -17,6 +17,7 @@ ul {
 /* Class Styling */
 .container{
     background-size: cover;
+    max-width: none;
 }
 .overdue{
     background-color: red;
