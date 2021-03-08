@@ -40,7 +40,7 @@ class Project {
         this.boardDescription = boardDescription;
         this.projectDeadline = projectDeadline; 
         this.priority = priority; 
-        this.taskLists = taskLists;  // new project will start without taskLists
+        this.taskLists = (!taskLists ? [] : taskLists);  // new project will start without taskLists
     }
 }
 
@@ -49,7 +49,7 @@ class TaskList {
         this.name = name;
         this.color = color;
         this.watch = false;
-        this.cards = cards; // new taskList will start without cards
+        this.cards = (!cards ? [] : cards); // new taskList will start without cards
         this.cardOrderStyle = cardOrderStyle; 
         this.showModal = false;
     }
