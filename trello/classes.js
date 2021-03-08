@@ -33,23 +33,23 @@ class Card {
 }
 
 class Project {
-    constructor(name, backgroundImage, tags, boardDescription, projectDeadline, priority) {
+    constructor(name, backgroundImage, tags, boardDescription, projectDeadline, priority, taskLists) {
         this.name = name;
         this.backgroundImage = backgroundImage;
         this.tags = (!tags ? [] : tags);
         this.boardDescription = boardDescription;
         this.projectDeadline = projectDeadline; 
         this.priority = priority; 
-        this.taskLists = [];  // new project will start without taskLists
+        this.taskLists = taskLists;  // new project will start without taskLists
     }
 }
 
 class TaskList {
-    constructor(name, cardOrderStyle, color) {
+    constructor(name, cardOrderStyle, color, cards) {
         this.name = name;
         this.color = color;
         this.watch = false;
-        this.cards = []; // new taskList will start without cards
+        this.cards = cards; // new taskList will start without cards
         this.cardOrderStyle = cardOrderStyle; 
         this.showModal = false;
     }
