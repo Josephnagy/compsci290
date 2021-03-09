@@ -158,7 +158,13 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color, currentList.cards);
              this.taskLists.push(duplicatedTaskList);
          }
-     }
+     }, 
+     watch: {
+         // change current links displayed if this variable changes its value!
+         currentLinkKey() {
+             this.taskLists[t];
+         }
+     },
  })
 // connect Vue app instance with HTML element with id="app" to display it
 app.$mount('#app');

@@ -32,7 +32,7 @@
 <body>
     <div id="app">
         <!-- Page Header -->
-        <header>
+        <header v-model="currentProject.color" :style="{backgroundColor: currentProject.color}">
             <!-- general project info -->
             <h1>{{currentProject.name}}</h1>
             <h3>{{currentProject.boardDescription}}</h3>
@@ -52,12 +52,22 @@
                 :title="currentProject.name" 
                 ok-only 
                 ok-title="Close"
-            > <p>hello world</p>
+            > 
                 <!-- actual modal content -->
 
                 <!-- edit title -->
                 <label><b>Project Title</b></label>
                 <input v-model="currentProject.name" style="width: 100%" type="text"></input>
+                <hr />
+
+                <!-- edit description -->
+                <label><b>Project Description</b></label>
+                <textarea v-model="currentProject.boardDescription" style="width: 100%" type="text"></textarea>
+                <hr />
+
+                <!-- edit board color -->
+                <label><b>Project Description</b></label>
+                <textarea v-model="currentProject.boardDescription" style="width: 100%" type="text"></textarea>
                 <hr />
 
                 <!-- edit backgroundImage  -->
@@ -120,7 +130,7 @@
                                                         :id="'modal'+t+c" 
                                                         :title="card.name" 
                                                         ok-only 
-                                                        ok-title="Close Task"
+                                                        ok-title="Close Card"
                                                     >
                                                         <!-- edit title -->
                                                         <label><b>Card Title</b></label>
@@ -193,7 +203,10 @@
                                         title="Edit List" 
                                         ok-title="Save Changes"
                                     > 
-                                        <p>this is the edit list modal</p>
+                                        <!-- taskList title  -->
+                                        <label><b>List Title</b></label>
+                                        <input v-model="taskList.name" style="width: 100%" type="text"></input>
+                                        <hr />
 
                                         <!-- options to sort cards within a list -->
                                         <label><b>Card Ordering</b></label>
@@ -205,7 +218,7 @@
 
                                         <!-- button to apply sorting -->
                                         <b-button 
-                                            variant="dark" 
+                                            variant="info" 
                                             block 
                                             @click="sortCards(t, taskLists[t].cardOrderStyle)">Sort Cards</b-button>
 
