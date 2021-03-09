@@ -142,6 +142,11 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
          },
          // creates a new card and adds it to a specific taskList based on the taskList index (i)
          createCard(t) {
+            // prevent user from creating card without all fields 
+             if (this.newCard.name === "" || this.newCard.description === "" || this.newCard.deadline === "" || this.newCard.priority === ""){
+                 window.alert("Please fill in all card fields!");
+                 return;
+             }
              // create new card using constructor 
              let newCardToAdd = new Card(this.newCard.name, this.newCard.color, this.newCard.description, this.newCard.deadline, this.newCard.priority, this.newCard.tags, [],  [], );
              // push new card to the list of taskLists cards
