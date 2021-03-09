@@ -14,6 +14,7 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              taskLists: EXAMPLE_PROJECT_0.taskLists, 
              cards: EXAMPLE_PROJECT_0.cards, 
              createNewTaskList: false,  
+             cardToMoveDestination: null,
              newCard: {
                  name: "",
                  color: "",
@@ -124,6 +125,20 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              // save sorted cards 
              this.taskLists[t].cards = sortedCards;
          },
+         // moves card from one taskList to another 
+         moveCard(t, c){
+             // store card object 
+             let cardToMove = this.taskLists[t].cards[c];
+
+             // push it to destination 
+             this.taskLists[this.cardToMoveDestination].cards.push(cardToMove);
+
+             // remove card from old taskList
+             this.deleteCard(t, c);
+
+             // reset fields
+             this.cardToMoveDestination = null;
+         },
          // creates a new card and adds it to a specific taskList based on the taskList index (i)
          createCard(t) {
              // create new card using constructor 
@@ -167,10 +182,7 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
          }
      }, 
      watch: {
-         // change current links displayed if this variable changes its value!
-         currentLinkKey() {
-             this.taskLists[t];
-         }
+         // TODO
      },
  })
 // connect Vue app instance with HTML element with id="app" to display it

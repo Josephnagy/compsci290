@@ -32,7 +32,7 @@
 <body>
     <div id="app">
         <!-- Page Header -->
-        <header v-model="currentProject.color" :style="{backgroundColor: currentProject.color}">
+        <header :style="{backgroundColor: currentProject.color}">
             <!-- general project info -->
             <h1>{{currentProject.name}}</h1>
             <h3>{{currentProject.boardDescription}}</h3>
@@ -43,7 +43,7 @@
             <!-- modal button -->
             <b-button 
                 v-b-modal="'projectModal'+currentProject.name" 
-                variant="info" 
+                variant="dark" 
                 block>Edit Project</b-button>
 
             <!-- edit project modal  -->
@@ -136,6 +136,7 @@
                                 :title="taskList.name" 
                                 :sub-title="'Cards: ' + taskList.cards.length" 
                                 :style="{backgroundColor: taskList.color}"
+                                :class="[{searchResult: searchText!=='' && taskList.name.toLowerCase().includes(searchText.toLowerCase())}]"
                             >
                                 <b-card-body>
                                     <b-row cols="1"> <!-- one column because cards should be stacked -->
@@ -168,6 +169,8 @@
                                                         ok-only 
                                                         ok-title="Close Card"
                                                     >
+                                                        <!-- actual view card modal content  -->
+
                                                         <!-- edit title -->
                                                         <label><b>Card Title</b></label>
                                                         <input v-model="taskLists[t].cards[c].name" style="width: 100%" type="text"></input>
@@ -211,7 +214,28 @@
                                                             @click="deleteCard(t, c)">Delete Card</b-button>
 
                                                     </b-modal>
-                                                    
+
+                                                    <!-- card FOOTER (cont...) -->
+                                                    <b-button 
+                                                        v-b-modal="'moveCardModal'+t+c" 
+                                                        variant="light" 
+                                                        block>Move Card</b-button>
+                                                    <!-- MODAL allows user to edit card content -->
+                                                    <b-modal 
+                                                        :id="'moveCardModal'+t+c" 
+                                                        :title="'Move ' + card.name" 
+                                                        ok-title="Move Card"
+                                                        @ok="moveCard(t, c)"
+                                                    >
+                                                        <!-- actual move card modal content -->
+
+                                                        <!-- destination taskList -->
+                                                        <label><b>Move Card To</b></label>
+                                                        <select name="moveCardToTaskList" id="'moveCardToTaskList'+t" v-model="cardToMoveDestination">
+                                                            <option v-for="(taskList, i) in taskLists" :value="i">{{taskList.name}}</option>
+                                                        </select>
+                                                    </b-modal>
+
                                                 </b-card-footer> 
 
                                             </b-card>
