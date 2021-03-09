@@ -190,6 +190,7 @@ const EXAMPLE_PROJECT_0_TASKLISTS = [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1, E
 // PROJECTS
 const EXAMPLE_PROJECT_0 = {
     name: "Schoolwork",
+    color: "#aaaaaa",
     backgroundImage: "beach.jpg",
     tags: EXAMPLE_TAGS_0,
     boardDescription: "This Trello board is used to organize the schoolwork for my classes",
