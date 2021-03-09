@@ -152,6 +152,12 @@
                                                 <!-- card details -->
                                                 <div class="card-content">
                                                     <p>Deadline: </p><span class="deadline" :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
+                                                    <ul>
+                                                        <li
+                                                            v-for="(tag, t) in card.tags">
+                                                                <b-tag>{{tag.name}}</b-tag>
+                                                        </li>
+                                                    </ul>
                                                 </div>
 
                                                 <!-- card FOOTER -->
@@ -198,6 +204,12 @@
                                                             <option value="3">Low Priority</option>
                                                         </select>
                                                         <hr />
+
+                                                        <!-- edit tags -->
+                                                        <div>
+                                                            <label for="'tags' + t+c">Type a new tag and press enter</label>
+                                                            <b-form-tags input-id="'tags' + t+c" v-model="card.tags"></b-form-tags>
+                                                        </div>
 
                                                         <!-- add comments -->
                                                         <label><b>Add Comment</b></label>
