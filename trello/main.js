@@ -125,15 +125,22 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              this.taskLists[t].cards = sortedCards;
          },
          // creates a new card and adds it to a specific taskList based on the taskList index (i)
-         createCard(i) {
+         createCard(t) {
              // create new card using constructor 
              let newCardToAdd = new Card(this.newCard.name, this.newCard.color, this.newCard.description, this.newCard.deadline, this.newCard.priority, this.newCard.tags, [],  [], );
              // push new card to the list of taskLists cards
-             this.taskLists[i].cards.push(newCardToAdd);
+             this.taskLists[t].cards.push(newCardToAdd);
              // reset newCard fields 
              this.newCard = { name: "", color: "", description: "", deadline: "", priority: "", tags: [], comments: [], checklists: [], showModal: false};
-             this.taskLists[i].createNewCard = false;
          }, 
+         createTaskList(){
+             // create new taskList using constructor 
+             let newTaskListToAdd = new TaskList(this.newTaskList.name, this.newTaskList.cardOrderStyle, this.newTaskList.color, []);
+             // push new taskList to the end of taskLists 
+             this.taskLists.push(newTaskListToAdd);
+             // reset newTaskList fields 
+             this.newTaskList = {name: "", watch: false, color: "", cards: [], cardOrderStyle: "alphabetical", showModal: false, createNewCard: false};
+         },
          // deletes card from taskList based on indicies
          deleteCard(t, c) {
              this.taskLists[t].cards.splice(c, 1);
