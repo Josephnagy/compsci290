@@ -153,19 +153,18 @@
 
                                                         <!-- duplicate card button -->
                                                         <b-button 
-                                                            variant="light" 
+                                                            variant="dark" 
                                                             block 
                                                             @click="duplicateCard(t, c)"
                                                         >Duplciate Card</b-button> 
 
-                                                    </b-modal>
+                                                        <!-- delete card button -->
+                                                        <b-button 
+                                                            variant="danger" 
+                                                            block 
+                                                            @click="deleteCard(t, c)">Delete Card</b-button>
 
-                                                    <!-- Delete card button -->
-                                                    <b-button 
-                                                        variant="danger" 
-                                                        block
-                                                        @click="deleteCard(t, c)"
-                                                    >Delete Card</b-button>
+                                                    </b-modal>
                                                     
                                                 </b-card-footer> 
 
@@ -215,6 +214,12 @@
                                             variant="dark" 
                                             block 
                                             @click="duplicateTaskList(t)">Duplciate List</b-button>
+
+                                        <!-- delete taskList button -->
+                                        <b-button 
+                                            variant="danger" 
+                                            block 
+                                            @click="deleteTaskList(t)">Delete List</b-button>
                                     </b-modal>
 
                                     <!-- taskList CARD FOOTER (cont...) -->
@@ -265,13 +270,6 @@
                                         <hr />
                                 
                                 </b-modal>
-
-                                <!-- Delete taskList button -->
-                                <b-button 
-                                    variant="danger" 
-                                    block
-                                    @click="deleteTaskList(t)"
-                                >Delete List</b-button>
                                 
                                 </b-card-footer>    
 
