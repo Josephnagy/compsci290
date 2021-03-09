@@ -151,7 +151,6 @@
                                             >
                                                 <!-- card details -->
                                                 <div class="card-content">
-                                                    <p>{{card.description}}</p>
                                                     <p>Deadline: </p><span class="deadline" :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
                                                 </div>
 
@@ -199,6 +198,28 @@
                                                             <option value="3">Low Priority</option>
                                                         </select>
                                                         <hr />
+
+                                                        <!-- add comments -->
+                                                        <label><b>Add Comment</b></label>
+                                                        <input v-model="newComment" style="width: 100%" type="text"></input>
+                                                        <hr />
+
+                                                        <b-button variant="info" block @click="addComment(t, c)">Add Comment</b-button>
+
+
+                                                        <label><b>Comments</b></label>
+                                                        <!-- view comments -->
+                                                        <ul>
+                                                            <li 
+                                                                v-for="(comment, k) in card.comments" 
+                                                                :key="k"
+                                                            >
+                                                                <div>
+                                                                    <p>{{displayDate(comment.timestamp)}}</p>
+                                                                    <p>{{comment.description}}</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
 
                                                         <!-- duplicate card button -->
                                                         <b-button 

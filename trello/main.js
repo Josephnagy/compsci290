@@ -34,7 +34,8 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
                  cardOrderStyle: "alphabetical",
                  showModal: false, 
                  createNewCard: false
-             }
+             }, 
+             newComment: ""
          }
      }, 
      methods: {
@@ -179,6 +180,18 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              let currentList = this.taskLists[t];
              let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color, currentList.cards);
              this.taskLists.push(duplicatedTaskList);
+         }, 
+         // adds comment to card
+         addComment(t, c){
+            // prepare comment content
+            let now = new Date();
+            let newCommentToAdd = new Comment(this.javascriptDateObjectToISOString(now), this.newComment);
+
+            // add comment to card 
+             this.taskLists[t].cards[c].comments.push(newCommentToAdd); 
+
+             // reset field
+             this.newComment = "";
          }
      }, 
      watch: {
