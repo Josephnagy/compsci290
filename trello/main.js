@@ -3,11 +3,13 @@
  *
  * @author Joseph Nagy
  */
+let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroom.jpg'];
 
  const app = new Vue({
      data(){
          return {
              searchText: "",
+             backgroundImages: backgroundImageOptions,
              currentProject: EXAMPLE_PROJECT_0, 
              taskLists: EXAMPLE_PROJECT_0.taskLists, 
              cards: EXAMPLE_PROJECT_0.cards, 

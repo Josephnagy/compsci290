@@ -33,9 +33,43 @@
     <div id="app">
         <!-- Page Header -->
         <header>
+            <!-- general project info -->
             <h1>{{currentProject.name}}</h1>
             <h3>{{currentProject.boardDescription}}</h3>
+            <!-- search bar  -->
             <input type="text" placeholder="Search Trello Board" v-model="searchText">
+
+            <!-- NOTE: WILL HAVE TO CHANGE v-b-modal, :id after mutliple projects implemented -->
+            <!-- modal button -->
+            <b-button 
+                v-b-modal="'projectModal'+currentProject.name" 
+                variant="info" 
+                block>Edit Project</b-button>
+
+            <!-- edit project modal  -->
+            <b-modal 
+                :id="'projectModal'+currentProject.name" 
+                :title="currentProject.name" 
+                ok-only 
+                ok-title="Close"
+            > <p>hello world</p>
+                <!-- actual modal content -->
+
+                <!-- edit title -->
+                <label><b>Project Title</b></label>
+                <input v-model="currentProject.name" style="width: 100%" type="text"></input>
+                <hr />
+
+                <!-- edit backgroundImage  -->
+                <label><b>Background Image</b></label>
+                <select name="backgroundImage" id="'backgroundImage'+currentProject.name" v-model="currentProject.backgroundImage">
+                    <option v-for="(image, i) in backgroundImages" :value="image">{{image}}</option>
+                </select>
+                <hr />
+
+            </b-modal>
+
+
         </header>
         <div class="container"
             :style="{ backgroundImage: 'url(data/background-images/' + currentProject.backgroundImage + ')' }">
@@ -58,8 +92,9 @@
                             >
                                 <b-card-body>
                                     <b-row cols="1"> <!-- one column because cards should be stacked -->
+                                        <!-- NOTE: sort cards inside v-for so they're always in order  -->
                                         <b-col 
-                                            v-for="(card, c) in taskList.cards"
+                                            v-for="(card, c) in taskList.cards" 
                                             :key="c"
                                         >
                                             <b-card 
@@ -160,6 +195,22 @@
                                         ok-title="Save Changes"
                                     > 
                                         <p>this is the edit list modal</p>
+
+                                        <!-- options to sort cards within a list -->
+                                        <label><b>Card Ordering</b></label>
+                                        <select name="cardOrder" id="'cardOrder'+t" v-model="taskLists[t].cardOrderStyle">
+                                            <option value="alphabetical">Order alphabetically</option>
+                                            <option value="priority">Order by card priority</option>
+                                            <option value="deadline">Order by card deadline</option>
+                                        </select>
+
+                                        <!-- button to apply sorting -->
+                                        <b-button 
+                                            variant="dark" 
+                                            block 
+                                            @click="sortCards(t, taskLists[t].cardOrderStyle)">Sort Cards</b-button>
+
+                                        <!-- duplicate list button -->
                                         <b-button 
                                             variant="dark" 
                                             block 
