@@ -8,12 +8,9 @@ This repository holds all of the files related to my CS290 Trello project
 
 Start Date: 3/1/2021
 
-Finish Date: 
+Finish Date: 3/8/2021
 
-Daily Hours Spent: pt1: 15hr 
-- 3/6: 3 hours 
-- 3/7: 2 hours 
-- 3/8: 6pm-
+Daily Hours Spent: 35 hours (pt1 + pt 2)
 
 
 
@@ -36,7 +33,7 @@ Background Images (Pixels.com)
 
 ### Assignment Notes
 
-Known Bugs: 
+Known Bugs: Tags don't look 100% correct
 
 Extra credit:
 
