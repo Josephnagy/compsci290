@@ -23,122 +23,39 @@
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.js"></script>
     <!-- Link the stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
-    <script defer src="example_data.js"></script>
-    <script defer src="main.js"></script>
-    <script defer src="classes.js"></script>
     <!-- data supporting this page -->
+    <script src="data/files/example_data.js"></script>
     <script src="data/files/DataStore.js"></script>
     <!-- components supporting this page -->
     <script src="components/EditableText.js"></script>
     <script src="components/TaskList.js"></script>
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="main.js"></script>
+    <script defer src="classes.js"></script>
 </head>
 
 <body>
     <div id="app">
         <!-- Page Header -->
-        <header :style="{backgroundColor: currentProject.color}">
+        <header>
             <!-- general project info -->
-            <h1>{{currentProject.name}}</h1>
-            <h3>{{currentProject.boardDescription}}</h3>
+            <h1>{{allData.currentProject.name}}</h1>
             <!-- search bar  -->
-            <input type="text" placeholder="Search Trello Board" v-model="searchText">
-
-            <!-- NOTE: WILL HAVE TO CHANGE v-b-modal, :id after mutliple projects implemented (later)-->
-            <!-- modal button -->
-            <b-button 
-                v-b-modal="'projectModal'+currentProject.name" 
-                variant="dark" 
-                block>Edit Project</b-button>
-
-            <!-- edit project modal  -->
-            <b-modal 
-                :id="'projectModal'+currentProject.name" 
-                :title="currentProject.name" 
-                ok-only 
-                ok-title="Close"
-            > 
-                <!-- actual project modal content -->
-
-                <!-- edit title -->
-                <label><b>Project Title</b></label>
-                <input v-model="currentProject.name" style="width: 100%" type="text"></input>
-                <hr />
-
-                <!-- edit description -->
-                <label><b>Project Description</b></label>
-                <textarea v-model="currentProject.boardDescription" style="width: 100%" type="text"></textarea>
-                <hr />
-
-                <!-- edit board color -->
-                <label><b>Project Description</b></label>
-                <input v-model="currentProject.color" style="width: 100%" type="color"></input>
-                <hr />
-
-                <!-- edit backgroundImage  -->
-                <label><b>Background Image</b></label>
-                <select name="backgroundImage" id="'backgroundImage'+currentProject.name" v-model="currentProject.backgroundImage">
-                    <option v-for="(image, i) in backgroundImages" :value="image">{{image}}</option>
-                </select>
-                <hr />
-
-            </b-modal>
-
-            <!-- create taskList modal button -->
-            <b-button 
-                v-b-modal="'newTaskList'+currentProject.name" 
-                variant="info" 
-                block>New List</b-button>
-            
-            <!-- create taskList project modal  -->
-            <b-modal 
-                :id="'newTaskList'+currentProject.name" 
-                :title="newTaskList.name" 
-                ok-only 
-                ok-title="Create List"
-                @ok="createTaskList()"
-            >
-                <!-- actual edit taskList modal -->
-
-                <!-- taskList title  -->
-                <label><b>List Title</b></label>
-                <input v-model="newTaskList.name" style="width: 100%" type="text" placeholder="List Name"></input>
-                <hr />
-
-                <!-- taskList color  -->
-                <label><b>List Color</b></label>
-                <input v-model="newTaskList.color" style="width: 100%" type="color"></input>
-                <hr />
-
-                <!-- taskList ordering -->
-                <label><b>Card Ordering</b></label>
-                <select name="cardOrder" id="'newCardOrder'+t" v-model="newTaskList.cardOrderStyle">
-                    <option value="alphabetical">Order alphabetically</option>
-                    <option value="priority">Order by card priority</option>
-                    <option value="deadline">Order by card deadline</option>
-                </select>
-                
-
-            </b-modal>
-
-
         </header>
-        <div class="container"
-            :style="{ backgroundImage: 'url(data/background-images/' + currentProject.backgroundImage + ')' }">
+        <div >
             <main>
                 <!-- Board Container -->
                 <b-container>
                     <!-- single row of taskLists -->
                     <b-row 
-                        :cols="taskLists.length"
+                        :cols="allData.taskLists.length"
                     >
                     <task-list
-                        v-for="(taskList, t) in taskLists"
+                        v-for="(taskList, t) in allData.taskLists"
                         :key="t"
                         :task-list="taskList"
                         :task-list-id="t"
                     > 
-
 
                     </task-list>    
 
