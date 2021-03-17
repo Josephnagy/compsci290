@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Joseph Nagy">
+    <!-- always label your name with a title -->
+    <title>Trello Project </title>
+    <!-- scale page to fit entire screen, so it properly fills non-desktop devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- DEV-only for easier refreshing: stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- load required Bootstrap and BootstrapVue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <!-- load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <!-- load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.js"></script>
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="example_data.js"></script>
+    <script defer src="main.js"></script>
+    <script defer src="classes.js"></script>
+    <!-- data supporting this page -->
+    <script src="data/files/DataStore.js"></script>
+    <!-- components supporting this page -->
+    <script src="components/EditableText.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Page Header -->
+        <header :style="{backgroundColor: currentProject.color}">
+            <!-- general project info -->
+            <editable-text v-model="currentProject.name">{{currentProject.name}}</editable-text>
+            <h3>{{currentProject.boardDescription}}</h3>
+            <!-- search bar  -->
+            <input type="text" placeholder="Search Trello Board" v-model="searchText">
+
+            <!-- NOTE: WILL HAVE TO CHANGE v-b-modal, :id after mutliple projects implemented (later)-->
+            <!-- modal button -->
+            <b-button v-b-modal="'projectModal'+currentProject.name" variant="dark" block>Edit Project</b-button>
+
+            <!-- edit project modal  -->
+            <b-modal :id="'projectModal'+currentProject.name" :title="currentProject.name" ok-only ok-title="Close">
+                <!-- actual project modal content -->
+
+                <!-- edit title -->
+                <label><b>Project Title</b></label>
+                <input v-model="currentProject.name" style="width: 100%" type="text"></input>
+                <hr />
+
+                <!-- edit description -->
+                <label><b>Project Description</b></label>
+                <textarea v-model="currentProject.boardDescription" style="width: 100%" type="text"></textarea>
+                <hr />
+
+                <!-- edit board color -->
+                <label><b>Project Description</b></label>
+                <input v-model="currentProject.color" style="width: 100%" type="color"></input>
+                <hr />
+
+                <!-- edit backgroundImage  -->
+                <label><b>Background Image</b></label>
+                <select name="backgroundImage" id="'backgroundImage'+currentProject.name"
+                    v-model="currentProject.backgroundImage">
+                    <option v-for="(image, i) in backgroundImages" :value="image">{{image}}</option>
+                </select>
+                <hr />
+
+            </b-modal>
+
+            <!-- create taskList modal button -->
+            <b-button v-b-modal="'newTaskList'+currentProject.name" variant="info" block>New List</b-button>
+
+            <!-- create taskList project modal  -->
+            <b-modal :id="'newTaskList'+currentProject.name" :title="newTaskList.name" ok-only ok-title="Create List"
+                @ok="createTaskList()">
+                <!-- actual edit taskList modal -->
+
+                <!-- taskList title  -->
+                <label><b>List Title</b></label>
+                <input v-model="newTaskList.name" style="width: 100%" type="text" placeholder="List Name"></input>
+                <hr />
+
+                <!-- taskList color  -->
+                <label><b>List Color</b></label>
+                <input v-model="newTaskList.color" style="width: 100%" type="color"></input>
+                <hr />
+
+                <!-- taskList ordering -->
+                <label><b>Card Ordering</b></label>
+                <select name="cardOrder" id="'newCardOrder'+t" v-model="newTaskList.cardOrderStyle">
+                    <option value="alphabetical">Order alphabetically</option>
+                    <option value="priority">Order by card priority</option>
+                    <option value="deadline">Order by card deadline</option>
+                </select>
+
+
+            </b-modal>
+
+
+        </header>
+        <div class="container"
+            :style="{ backgroundImage: 'url(data/background-images/' + currentProject.backgroundImage + ')' }">
+            <main>
+                <!-- Board Container -->
+                <b-container>
+                    <!-- single row of taskLists -->
+                    <b-row :cols="taskLists.length">
+                        <b-col v-for="(taskList, t) in taskLists" :key="t">
+                            <!-- taskList CARD -->
+                            <b-card :title="taskList.name" :sub-title="'Cards: ' + taskList.cards.length"
+                                :style="{backgroundColor: taskList.color}"
+                                :class="[{searchResult: searchText!=='' && taskList.name.toLowerCase().includes(searchText.toLowerCase())}]">
+                                <b-card-body>
+                                    <b-row cols="1">
+                                        <!-- one column because cards should be stacked -->
+                                        <b-col v-for="(card, c) in taskList.cards" :key="c">
+                                            <b-card :title="card.name" :style="{backgroundColor: card.color}"
+                                                :sub-title="'Comments: ' + card.comments.length">
+                                                <!-- card details -->
+                                                <div class="card-content">
+                                                    <p>Deadline: </p><span class="deadline"
+                                                        :class="getDeadlineClass(card.deadline)">{{displayDate(card.deadline)}}</span>
+                                                    <ul>
+                                                        <li v-for="(tag, t) in card.tags">
+                                                            <b-tag>{{tag.name}}</b-tag>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- card FOOTER -->
+                                                <b-card-footer>
+                                                    <!-- modal button -->
+                                                    <b-button v-b-modal="'modal'+t+c" variant="info" block>View Card
+                                                    </b-button>
+                                                    <!-- MODAL allows user to edit card content -->
+                                                    <b-modal :id="'modal'+t+c" :title="card.name" ok-only
+                                                        ok-title="Close Card">
+                                                        <!-- actual view card modal content  -->
+
+                                                        <!-- edit title -->
+                                                        <label><b>Card Title</b></label>
+                                                        <input v-model="taskLists[t].cards[c].name" style="width: 100%"
+                                                            type="text"></input>
+                                                        <hr />
+
+                                                        <!-- edit description -->
+                                                        <label><b>Card Description</b></label>
+                                                        <textarea v-model="taskLists[t].cards[c].description"
+                                                            style="width: 100%" type="text"></textarea>
+                                                        <hr />
+
+                                                        <!-- edit color -->
+                                                        <label><b>Card Color</b></label>
+                                                        <input v-model="taskLists[t].cards[c].color" style="width: 100%"
+                                                            type="color"></input>
+                                                        <hr />
+
+                                                        <!-- edit deadline -->
+                                                        <label><b>Card Deadline</b></label>
+                                                        <input v-model="taskLists[t].cards[c].deadline"
+                                                            style="width: 100%" type="datetime-local"></input>
+                                                        <hr />
+
+                                                        <!-- edit priority -->
+                                                        <label><b>Card Priority</b></label>
+                                                        <select name="priority" id="'priority'+t+c"
+                                                            v-model="taskLists[t].cards[c].priority">
+                                                            <option value="1">High Priority</option>
+                                                            <option value="2">Medium Priority</option>
+                                                            <option value="3">Low Priority</option>
+                                                        </select>
+                                                        <hr />
+
+                                                        <!-- edit tags -->
+                                                        <div>
+                                                            <label for="'tags' + t+c">Type a new tag and press
+                                                                enter</label>
+                                                            <b-form-tags input-id="'tags' + t+c" v-model="card.tags">
+                                                            </b-form-tags>
+                                                        </div>
+
+                                                        <!-- add comments -->
+                                                        <label><b>Add Comment</b></label>
+                                                        <input v-model="newComment" style="width: 100%"
+                                                            type="text"></input>
+                                                        <hr />
+
+                                                        <b-button variant="info" block @click="addComment(t, c)">Add
+                                                            Comment</b-button>
+
+
+                                                        <label><b>Comments</b></label>
+                                                        <!-- view comments -->
+                                                        <ul>
+                                                            <li v-for="(comment, k) in card.comments" :key="k">
+                                                                <div>
+                                                                    <p>{{displayDate(comment.timestamp)}}</p>
+                                                                    <p>{{comment.description}}</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+                                                        <!-- duplicate card button -->
+                                                        <b-button variant="dark" block @click="duplicateCard(t, c)">
+                                                            Duplciate Card</b-button>
+
+                                                        <!-- delete card button -->
+                                                        <b-button variant="danger" block @click="deleteCard(t, c)">
+                                                            Delete Card</b-button>
+
+                                                    </b-modal>
+
+                                                    <!-- card FOOTER (cont...) -->
+                                                    <b-button v-b-modal="'moveCardModal'+t+c" variant="light" block>Move
+                                                        Card</b-button>
+                                                    <!-- MODAL allows user to edit card content -->
+                                                    <b-modal :id="'moveCardModal'+t+c" :title="'Move ' + card.name"
+                                                        ok-title="Move Card" @ok="moveCard(t, c)">
+                                                        <!-- actual move card modal content -->
+
+                                                        <!-- destination taskList -->
+                                                        <label><b>Move Card To</b></label>
+                                                        <select name="moveCardToTaskList" id="'moveCardToTaskList'+t"
+                                                            v-model="cardToMoveDestination">
+                                                            <option v-for="(taskList, i) in taskLists" :value="i">
+                                                                {{taskList.name}}</option>
+                                                        </select>
+                                                    </b-modal>
+
+                                                </b-card-footer>
+
+                                            </b-card>
+
+                                        </b-col>
+
+                                    </b-row>
+
+
+                                </b-card-body>
+                                <!-- taskList CARD FOOTER -->
+                                <b-card-footer>
+                                    <!-- button to edit taskList -->
+                                    <b-button v-b-modal="'taskListmodal'+t" variant="dark" block>Edit List</b-button>
+
+                                    <!-- edit taskList MODAL -->
+                                    <b-modal :id="'taskListmodal'+t" @ok="" @cancel="" title="Edit List"
+                                        ok-title="Save Changes">
+                                        <!-- taskList title  -->
+                                        <label><b>List Title</b></label>
+                                        <input v-model="taskList.name" style="width: 100%" type="text"></input>
+                                        <hr />
+
+                                        <!-- options to sort cards within a list -->
+                                        <label><b>Card Ordering</b></label>
+                                        <select name="cardOrder" id="'cardOrder'+t"
+                                            v-model="taskLists[t].cardOrderStyle">
+                                            <option value="alphabetical">Order alphabetically</option>
+                                            <option value="priority">Order by card priority</option>
+                                            <option value="deadline">Order by card deadline</option>
+                                        </select>
+
+                                        <!-- button to apply sorting -->
+                                        <b-button variant="info" block
+                                            @click="sortCards(t, taskLists[t].cardOrderStyle)">Sort Cards</b-button>
+
+                                        <!-- duplicate list button -->
+                                        <b-button variant="dark" block @click="duplicateTaskList(t)">Duplciate List
+                                        </b-button>
+
+                                        <!-- delete taskList button -->
+                                        <b-button variant="danger" block @click="deleteTaskList(t)">Delete List
+                                        </b-button>
+                                    </b-modal>
+
+                                    <!-- taskList CARD FOOTER (cont...) -->
+                                    <!-- button to open create card modal  -->
+                                    <b-button v-b-modal="'modal'+t" variant="info" block>Create Card</b-button>
+                                    <!-- create card modal -->
+                                    <b-modal :id="'modal'+t" @ok="createCard(t)" @cancel="resetNewCard()"
+                                        title="Create New Card" ok-title="Create Card">
+                                        <!-- card title  -->
+                                        <label><b>Card Title</b></label>
+                                        <input v-model="newCard.name" style="width: 100%" type="text"></input>
+                                        <hr />
+
+                                        <!-- card description  -->
+                                        <label><b>Card Description</b></label>
+                                        <input v-model="newCard.description" style="width: 100%" type="text"></input>
+                                        <hr />
+
+                                        <!-- card color  -->
+                                        <label><b>Card Color</b></label>
+                                        <input v-model="newCard.color" style="width: 100%" type="color"></input>
+                                        <hr />
+
+                                        <!-- card deadline  -->
+                                        <label><b>Card Deadline</b></label>
+                                        <input v-model="newCard.deadline" style="width: 100%"
+                                            type="datetime-local"></input>
+                                        <hr />
+
+                                        <!-- card priority  -->
+                                        <label><b>Card Priority</b></label>
+                                        <select name="priority" id="priority" v-model="newCard.priority">
+                                            <option value="1">High Priority</option>
+                                            <option value="2">Medium Priority</option>
+                                            <option value="3">Low Priority</option>
+                                        </select>
+                                        <hr />
+
+                                        <!-- TODO: card tags  -->
+                                        <label><b>Card Tags</b></label>
+                                        <hr />
+
+                                    </b-modal>
+
+                                </b-card-footer>
+
+                            </b-card>
+
+                        </b-col>
+
+                    </b-row>
+                </b-container>
+            </main>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+<footer>
+    <p> Background image credit: <a href="www.pexels.com">Pexels</a></p>
+</footer>
+
+</html>
