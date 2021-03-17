@@ -49,7 +49,7 @@ Vue.component('task-list', {
     },
     // display group as a column or cards that is organized by BootstrapVue
     template: `
-        <b-col >
+        <b-col>
             <b-card
                 :title="taskList.name" 
                 :sub-title="'Cards: ' + taskList.cards.length" 
@@ -58,12 +58,14 @@ Vue.component('task-list', {
                 <b-card-body>
                     <b-row cols="1"> <!-- one column because cards should be stacked -->
                         <b-col
-                            v-for="(card, c) in taskList.cards" 
-                            :key="c" 
+                            v-for="(card, car) in taskList.cards" 
+                            :key="car" 
                         >
                             <tasklist-card 
                                 :card="card" 
-                                :card-id="c">
+                                :card-id="car"
+                                :task-list-id="taskListId"
+                            >
                             </tasklist-card>
                         </b-col>
                 

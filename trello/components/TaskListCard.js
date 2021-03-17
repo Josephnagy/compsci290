@@ -16,6 +16,10 @@ Vue.component('tasklist-card', {
         cardId: {
             type: Number, 
             required: true
+        }, 
+        taskListId: {
+            type: Number,
+            required: true
         }
     }, 
 
@@ -32,7 +36,35 @@ Vue.component('tasklist-card', {
             :title="card.name" 
             :style="{backgroundColor: card.color}"
         >
-            <b-button>View Card</b-button>
+            <!-- card details -->
+            <div class="card-content">
+                <p>Deadline: </p><span>{{card.deadline}}</span>
+            </div>
+
+            <!-- card FOOTER -->
+            <b-card-footer>
+                <!-- modal button -->
+                <b-button 
+                    v-b-modal="'editCardModal'+cardId+taskListId" 
+                    variant="info" 
+                    block>View Card</b-button>
+
+                <!-- MODAL to edit card content -->
+                <b-modal 
+                    :id="'editCardModal'+cardId+taskListId" 
+                    :title="card.name" 
+                    ok-only 
+                    ok-title="Close Card"
+                >
+                    <edit-card-modal
+                        :card="card"
+                        :card-id="cardId"
+                        :task-list-id="taskListId"
+                    > </edit-card-modal>
+                </b-modal>
+
+
+            </b-card-footer>
         </b-card>
 `
 }); 
