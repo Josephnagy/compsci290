@@ -8,34 +8,7 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
  const app = new Vue({
      data(){
          return {
-             searchText: "",
-             backgroundImages: backgroundImageOptions,
-             currentProject: EXAMPLE_PROJECT_0, 
-             taskLists: EXAMPLE_PROJECT_0.taskLists, 
-             cards: EXAMPLE_PROJECT_0.cards, 
-             createNewTaskList: false,  
-             cardToMoveDestination: null,
-             newCard: {
-                 name: "",
-                 color: "",
-                 description: "",
-                 deadline: "",
-                 priority: "",
-                 tags: [],
-                 comments: [],
-                 checklists: [],
-                 showModal: false
-             }, 
-             newTaskList: {
-                 name: "",
-                 watch: false,
-                 color: "",
-                 cards: [],
-                 cardOrderStyle: "alphabetical",
-                 showModal: false, 
-                 createNewCard: false
-             }, 
-             newComment: ""
+             allData: trelloDataStore
          }
      }, 
      methods: {
