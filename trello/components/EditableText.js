@@ -31,7 +31,7 @@ Vue.component('editable-text', {
         setText() {
             if (this.editedText) {
                 console.log(`EVENT: new title ${this.editedText}`);
-                this.$emit('text-change', this.editedText);
+                this.$emit('input', this.editedText);
                 this.isEditing = false;
             }
         }
