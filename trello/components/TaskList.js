@@ -50,10 +50,11 @@ Vue.component('task-list', {
     // display group as a column or cards that is organized by BootstrapVue
     template: `
         <b-col >
-            <editable-text v-model="title" />
+            // taskList card 
             <b-card
-                v-for="(card, c) in taskList.cards"
-                :key="c"
+                :title="taskList.name" 
+                :sub-title="'Cards: ' + taskList.cards.length" 
+                :style="{backgroundColor: taskList.color}"
             >
                 <p>hello world</p>
             </b-card>
