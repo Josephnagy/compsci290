@@ -70,8 +70,30 @@ Vue.component('task-list', {
                         </b-col>
                 
                     </b-row>
-                    <b-button>View List</b-button>
                 </b-card-body>
+
+                <!-- taskList FOOTER -->
+                <b-card-footer>
+                    <!-- modal button -->
+                    <b-button 
+                        v-b-modal="'editTaskListModal'+taskListId" 
+                        variant="info" 
+                        block>View List</b-button>
+
+                    <!-- MODAL to edit taskList content -->
+                    <b-modal 
+                        :id="'editTaskListModal'+taskListId" 
+                        :title="taskList.name" 
+                        ok-only 
+                        ok-title="Close List"
+                    >
+                        <edit-tasklist-modal
+                            :task-list="taskList"
+                            :task-list-id="taskListId"
+                        > </edit-tasklist-modal>
+                    </b-modal>
+                </b-card-footer>
+
             </b-card>
         </b-col>
     `
