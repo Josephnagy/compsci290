@@ -25,10 +25,16 @@ Vue.component('tasklist-card', {
 
     data() {
         return {
-            // backing data for edits using v-model
-            title: this.card.name
-            // may also need a copy group information if there is any chance it might be changed interactively
+            // allow access to dataStore so methods can be called
+            allData: trelloDataStore
         };
+    },
+
+    methods: {
+        updateCard(cardID, taskListID, editedCard) {
+            console.log(`Editing card`);
+            this.allData.updateCard(cardID, taskListID, editedCard);
+        }
     },
 
     template: `
@@ -61,6 +67,7 @@ Vue.component('tasklist-card', {
                         :card="card"
                         :card-id="cardId"
                         :task-list-id="taskListId"
+                        @edit-card="updateCard" 
                     > </edit-card-modal>
                 </b-modal>
         </b-card>

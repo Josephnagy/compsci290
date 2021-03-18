@@ -24,8 +24,17 @@ Vue.component('edit-card-modal', {
     },
     data() {
         return {
-            // local copy of the data?? apparently not...?
-            currentCard: this.card, 
+            // preserve card before changes in case user wants to discard changes 
+            oldCard: this.card,
+            // local copy of the data
+            editedCard: JSON.parse(JSON.stringify(this.card))
+        }
+    },
+    methods: {
+        updateCard() {
+            // TODO: make sure all fields are valid
+            console.log(`EVENT: card name " ${this.oldCard.name} " was changed to " ${this.editedCard.name} "`); 
+            this.$emit('edit-card', this.cardId, this.taskListId, this.editedCard);
         }
     },
 
@@ -33,27 +42,27 @@ Vue.component('edit-card-modal', {
     <div> 
         <!-- edit title -->
         <label><b>Card Title</b></label>
-        <input v-model="currentCard.name" style="width: 100%" type="text"></input>
+        <input v-model="editedCard.name" style="width: 100%" type="text"></input>
         <hr />
 
         <!-- edit description -->
         <label><b>Card Description</b></label>
-        <textarea v-model="currentCard.description" style="width: 100%" type="text"></textarea>
+        <textarea v-model="editedCard.description" style="width: 100%" type="text"></textarea>
         <hr />
 
         <!-- edit color -->
         <label><b>Card Color</b></label>
-        <input v-model="currentCard.color" style="width: 100%" type="color"></input>
+        <input v-model="editedCard.color" style="width: 100%" type="color"></input>
         <hr />
 
         <!-- edit deadline -->
         <label><b>Card Deadline</b></label>
-        <input v-model="currentCard.deadline" style="width: 100%" type="datetime-local"></input>
+        <input v-model="editedCard.deadline" style="width: 100%" type="datetime-local"></input>
         <hr />
 
         <!-- edit priority -->
         <label><b>Card Priority</b></label>
-        <select name="priority" id="'cardPriority'+cardId+taskListId" v-model="currentCard.priority">
+        <select name="priority" id="'cardPriority'+cardId+taskListId" v-model="editedCard.priority">
             <option value="1">High Priority</option>
             <option value="2">Medium Priority</option>
             <option value="3">Low Priority</option>
@@ -84,6 +93,11 @@ Vue.component('edit-card-modal', {
                 </div>
             </li>
         </ul>
+
+        <b-button
+            variant="success"
+            @click="updateCard()"
+        > Save Changes </b-button>
 
     </div> 
     `
