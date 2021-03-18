@@ -75,7 +75,7 @@ Vue.component('edit-card-modal', {
         <!-- view comments -->
         <ul>
             <li 
-                v-for="(comment, ck) in card.comments" 
+                v-for="(comment, k) in card.comments" 
                 :key="k"
             >
                 <div>
