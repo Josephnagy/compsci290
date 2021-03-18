@@ -84,8 +84,7 @@ Vue.component('task-list', {
                     <b-modal 
                         :id="'editTaskListModal'+taskListId" 
                         :title="taskList.name" 
-                        ok-only 
-                        ok-title="Close List"
+                        :hide-footer="true"
                     >
                         <edit-tasklist-modal
                             :task-list="taskList"

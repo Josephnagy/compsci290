@@ -49,12 +49,13 @@ Vue.component('tasklist-card', {
                     variant="info" 
                     block>View Card</b-button>
 
-                <!-- MODAL to edit card content -->
+            </b-card-footer>
+
+            <!-- MODAL to edit card content -->
                 <b-modal 
                     :id="'editCardModal'+cardId+taskListId" 
                     :title="card.name" 
-                    ok-only 
-                    ok-title="Close Card"
+                    :hide-footer="true"
                 >
                     <edit-card-modal
                         :card="card"
@@ -62,9 +63,6 @@ Vue.component('tasklist-card', {
                         :task-list-id="taskListId"
                     > </edit-card-modal>
                 </b-modal>
-
-
-            </b-card-footer>
         </b-card>
 `
 }); 
