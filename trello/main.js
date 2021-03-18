@@ -3,6 +3,21 @@
  *
  * @author Joseph Nagy
  */
+const monthDict = {
+    1: {name: "January", abbr: "Jan"},
+    2: { name: "February", abbr: "Feb"}, 
+    3: { name: "March", abbr: "Mar" },
+    4: { name: "April", abbr: "Apr" },
+    5: { name: "May", abbr: "May" }, 
+    6: { name: "June", abbr: "June" },
+    7: { name: "July", abbr: "July" },
+    8: { name: "August", abbr: "Aug" },
+    9: { name: "September", abbr: "Sept" },
+    10: { name: "October", abbr: "Oct" },
+    11: { name: "November", abbr: "Nov" },
+    12: { name: "December", abbr: "Dec" },
+}
+
 let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroom.jpg'];
 
  const app = new Vue({
@@ -12,7 +27,18 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
          }
      }, 
      methods: {
-         // helper function that takes ISO date('YYYY-MM-DDThh:mm') and returns a display string for dates
+         // helper function that converts military time to standard (ie 14:00 --> 2:00 PM)
+         militaryToStandardTime(militaryTime){
+             // add blank seconds field to military time (necessary to use Moment.js)
+
+             // convert: moment(militaryTime, 'HH:mm:ss').format('h:mm:ss A');
+
+             // remove seconds field 
+
+             //return
+
+         },
+         // helper function that takes ISO date('YYYY-MM-DDThh:mm') and returns a simple display string 
          displayDate(date){
              if(date === undefined){
                  return "undefined time"
