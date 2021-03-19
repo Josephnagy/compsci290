@@ -7,8 +7,8 @@
  const trelloDataStore = {
      data: {
          searchText: "",
-         currentProject: EXAMPLE_PROJECT_0,
-         createNewTaskList: false,
+         projects: EXAMPLE_PROJECTS,
+         currentProject: EXAMPLE_PROJECTS[0],
          cardToMoveDestination: null,
          newCard: {
              name: "",
@@ -40,7 +40,15 @@
     // ====================================================================================================================================
     // LIST METHODS
     // ====================================================================================================================================
-
+     createTaskList() {
+         // create new taskList using constructor 
+         let newTaskListToAdd = new TaskList(this.data.newTaskList.name, this.data.newTaskList.cardOrderStyle, this.data.newTaskList.color, []);
+         // push new taskList to the end of currentProject's taskLists 
+         this.data.currentProject.taskLists.push(newTaskListToAdd);
+         // reset newTaskList fields 
+         this.data.newTaskList = { name: "", watch: false, color: "", cards: [], cardOrderStyle: "alphabetical", showModal: false, createNewCard: false };
+     },
+     
      updateTaskList(taskListId, editedTaskList) {
          Vue.set(this.data.currentProject.taskLists, taskListId, editedTaskList);
          console.log("successfully edited taskList");
