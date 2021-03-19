@@ -4,10 +4,11 @@
 * @author Joseph Nagy 
 */
 
+
 class Tag {
     constructor(name, color) {
         this.name = name;
-        this.color = color;
+        this.color = (color === "" ? "#aaaaaa": color);
     }
 }
 
@@ -21,7 +22,7 @@ class Comment {
 class Card {
     constructor(name, color, description, deadline, priority, tags, comments, checklists) {
         this.name = name;
-        this.color = color;
+        this.color = (color === "" ? "#aaaaaa" : color);
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
@@ -47,7 +48,7 @@ class Project {
 class TaskList {
     constructor(name, cardOrderStyle, color, cards) {
         this.name = name;
-        this.color = color;
+        this.color = (color === "" ? "#aaaaaa" : color);
         this.watch = false;
         this.cards = (!cards ? [] : cards); // new taskList will start without cards
         this.cardOrderStyle = cardOrderStyle; 
