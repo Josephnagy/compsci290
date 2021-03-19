@@ -16,7 +16,7 @@ const monthDict = {
     10: { name: "October", abbr: "Oct" },
     11: { name: "November", abbr: "Nov" },
     12: { name: "December", abbr: "Dec" },
-}
+};
 
 let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroom.jpg'];
 
@@ -88,10 +88,6 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              d1 = Date.parse(date1);
              d2 = Date.parse(date2); 
              return (d2 - d1) / (60 * 60 * 1000); 
-         }, 
-         // test function used to check that a function call is working properly
-         windowAlert(s){
-             window.alert(s);
          }, 
          // takes taskList index and sortingCriterion, returns taskList[t].cards sorted based on sortingCriterion
          sortCards(t, sortingCriterion){
@@ -201,6 +197,43 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
      watch: {
          // TODO
      },
+     template: 
+     `
+     <div> 
+        <!-- Page Header -->
+        <header>
+            <h1>{{allData.data.currentProject.name}}</h1>
+            <!-- EDIT BOARD -->
+            <!-- modal button -->
+            <b-button v-b-modal="'projectModal'+allData.data.currentProject.name" variant="dark" block>Edit Project</b-button>
+            <!-- actual modal to edit board  -->
+            <b-modal :id="'projectModal'+allData.data.currentProject.name" :title="allData.data.currentProject.name" :hide-footer="true">
+                <edit-project-modal :project="allData.data.currentProject"> </edit-project-modal>
+            </b-modal>
+
+        </header>
+        <div >
+            <main>
+                <!-- Board Container -->
+                <b-container>
+                    <!-- single row of taskLists -->
+                    <b-row 
+                        :cols="allData.data.currentProject.taskLists.length"
+                    >
+                        <task-list
+                            v-for="(taskList, t) in allData.data.currentProject.taskLists"
+                            :key="t"
+                            :task-list="taskList"
+                            :task-list-id="t"
+                        > 
+                        </task-list>    
+                    </b-row>
+                </b-container>
+            </main>
+        </div>
+     </div>
+     
+     `
  })
 // connect Vue app instance with HTML element with id="app" to display it
 app.$mount('#app');

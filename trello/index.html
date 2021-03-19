@@ -48,39 +48,7 @@
 
 <body>
     <div id="app">
-        <!-- Page Header -->
-        <header>
-            <!-- general project info -->
-            <h1>{{allData.data.currentProject.name}}</h1>
-            <!-- Edit Board -->
-
-            <!-- modal button -->
-            <b-button v-b-modal="'projectModal'+allData.data.currentProject.name" variant="dark" block>Edit Project</b-button>
-
-            <!-- actual modal to edit board  -->
-            <b-modal :id="'projectModal'+allData.data.currentProject.name" :title="allData.data.currentProject.name" :hide-footer="true">
-                <edit-project-modal :project="allData.data.currentProject"> </edit-project-modal>
-            </b-modal>
-        </header>
-        <div >
-            <main>
-                <!-- Board Container -->
-                <b-container>
-                    <!-- single row of taskLists -->
-                    <b-row 
-                        :cols="allData.data.currentProject.taskLists.length"
-                    >
-                        <task-list
-                            v-for="(taskList, t) in allData.data.currentProject.taskLists"
-                            :key="t"
-                            :task-list="taskList"
-                            :task-list-id="t"
-                        > 
-                        </task-list>    
-                    </b-row>
-                </b-container>
-            </main>
-        </div>
+        <!-- Everything contained inside main.js template -->
     </div>
 </body>
 
