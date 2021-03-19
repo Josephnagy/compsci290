@@ -12,11 +12,11 @@ Vue.component('project-board', {
             type: Object,
             required: true,
         },
-        // unique ID of project
-        projectId: {
-            type: Number,
-            required: true,
-        }
+        // NOTE: not sure if I need this yet 
+        // projectId: {
+        //     type: Number,
+        //     required: true,
+        // }
     },
 
     data() {
@@ -37,6 +37,21 @@ Vue.component('project-board', {
     template: 
     `
     <div> 
+        <!-- Board Container -->
+        <b-container>
+            <!-- single row of taskLists -->
+            <b-row 
+                :cols="project.taskLists.length"
+            >
+                <task-list
+                    v-for="(taskList, t) in project.taskLists"
+                    :key="t"
+                    :task-list="taskList"
+                    :task-list-id="t"
+                > 
+                </task-list>    
+            </b-row>
+        </b-container>
 
     </div>
        

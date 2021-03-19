@@ -214,21 +214,9 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
         </header>
         <div >
             <main>
-                <!-- Board Container -->
-                <b-container>
-                    <!-- single row of taskLists -->
-                    <b-row 
-                        :cols="allData.data.currentProject.taskLists.length"
-                    >
-                        <task-list
-                            v-for="(taskList, t) in allData.data.currentProject.taskLists"
-                            :key="t"
-                            :task-list="taskList"
-                            :task-list-id="t"
-                        > 
-                        </task-list>    
-                    </b-row>
-                </b-container>
+                <project-board
+                    :project="allData.data.currentProject"
+                > </project-board>
             </main>
         </div>
      </div>
