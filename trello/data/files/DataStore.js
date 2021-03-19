@@ -43,13 +43,15 @@
 
      updateTaskList(taskListId, editedTaskList) {
          Vue.set(this.data.currentProject.taskLists, taskListId, editedTaskList);
+         console.log("successfully edited taskList");
      },
 
     // ====================================================================================================================================
     // CARD METHODS
     // ====================================================================================================================================
-    
+
      updateCard(cardId, taskListId, editedCard){
         Vue.set(this.data.currentProject.taskLists[taskListId].cards, cardId, editedCard);
+         console.log("successfully edited card");
      }
  }

@@ -24,27 +24,15 @@ Vue.component('task-list', {
 
     data() {
         return {
-            // backing data for edits using v-model, no copy needed since Strings are immutable
-            title: this.taskList.name
-            // may also need a copy group information if there is any chance it might be changed interactively
+            // allow access to dataStore so methods can be called
+            allData: trelloDataStore
         };
     },
-
-    // methods: {
-        // emit event that signals a new link is ready to be added
-        // NOTE, error checking is done in the child component
-        // addLink(newLink) {
-        //     console.log(`EVENT: add new item ${newLink.name} to ${this.linkGroup.title}`);
-        //     this.$emit('new-link', this.groupId, newLink);
-            // may also do additional work related to logging, interactivity, or other tracking changes
-        // }
-
-    watch: {
-        // track changes to edited value and emits event when value is ready
-        // NOTE, error checking is done in the child component
-        title() {
-            console.log(`EVENT: new title ${this.title} to replace ${this.taskList.name}`);
-            this.$emit('update-title', this.taskListId, this.title);
+    
+    methods: {
+        updateTaskList(taskListID, editedTaskList){
+            console.log(`Editing tasklist`);
+            this.allData.updateTaskList(taskListID, editedTaskList);
         }
     },
     // display group as a column or cards that is organized by BootstrapVue
@@ -89,6 +77,7 @@ Vue.component('task-list', {
                         <edit-tasklist-modal
                             :task-list="taskList"
                             :task-list-id="taskListId"
+                            @edit-tasklist="updateTaskList" 
                         > </edit-tasklist-modal>
                     </b-modal>
                 </b-card-footer>
