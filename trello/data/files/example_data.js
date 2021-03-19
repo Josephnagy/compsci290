@@ -148,7 +148,7 @@ const EXAMPLE_CARD_4 = {
     name: "Biodiversity Memo",
     color: "#24B869",
     description: "Write a memo discussing the importances of biodiversity as it relates to ecological services.",
-    deadline: "2021-03-17T8:30",
+    deadline: "2021-03-17T08:30",
     priority: "2",
     tags: EXAMPLE_CARD_4_TAGS,
     comments: [EXAMPLE_COMMENT_8],
@@ -198,3 +198,16 @@ const EXAMPLE_PROJECT_0 = {
     priority: 2,
     taskLists: EXAMPLE_PROJECT_0_TASKLISTS
 }
+
+const EXAMPLE_PROJECT_1 = {
+    name: "Example Project 2",
+    color: "#aaaaaa",
+    backgroundImage: "beach.jpg",
+    tags: EXAMPLE_TAGS_0,
+    boardDescription: "This Trello board an example",
+    projectDeadline: "",
+    priority: 2,
+    taskLists: [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1]
+}
+
+const EXAMPLE_PROJECTS = [EXAMPLE_PROJECT_0, EXAMPLE_PROJECT_1];
