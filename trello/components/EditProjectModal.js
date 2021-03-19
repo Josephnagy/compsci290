@@ -13,6 +13,10 @@ Vue.component('edit-project-modal', {
             required: true,
         },
         // TODO: unique ID of project 
+        projectId: {
+            type: Number, 
+            required: true
+        }
     },
     data() {
         return {
