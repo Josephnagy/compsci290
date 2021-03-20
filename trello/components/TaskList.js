@@ -37,14 +37,15 @@ Vue.component('task-list', {
     },
     // display group as a column or cards that is organized by BootstrapVue
     template: `
-        <b-col>
-            <b-card
-                :title="taskList.name" 
-                :sub-title="'Cards: ' + taskList.cards.length" 
-                :style="{backgroundColor: taskList.color}"
-            >
-                <b-card-body>
-                    <b-row cols="1"> <!-- one column because cards should be stacked -->
+    <b-col>
+        <b-card
+            :title="taskList.name" 
+            :sub-title="'Cards: ' + (!taskList.cards ? 0 : taskList.cards.length)" 
+            :style="{backgroundColor: taskList.color}"
+        >
+            <b-card-body>
+                <b-row cols="1"> <!-- one column because cards should be stacked -->
+                    <draggable :list="taskList.cards" group="taskLists">
                         <b-col
                             v-for="(card, car) in taskList.cards" 
                             :key="car" 
@@ -53,36 +54,35 @@ Vue.component('task-list', {
                                 :card="card" 
                                 :card-id="car"
                                 :task-list-id="taskListId"
-                            >
-                            </tasklist-card>
+                            > </tasklist-card>
                         </b-col>
-                
-                    </b-row>
-                </b-card-body>
+                    </draggable>
+                </b-row>
+            </b-card-body>
 
-                <!-- taskList FOOTER -->
-                <b-card-footer>
-                    <!-- modal button -->
-                    <b-button 
-                        v-b-modal="'editTaskListModal'+taskListId" 
-                        variant="info" 
-                        block>View List</b-button>
+            <!-- taskList FOOTER -->
+            <b-card-footer>
+                <!-- modal button -->
+                <b-button 
+                    v-b-modal="'editTaskListModal'+taskListId" 
+                    variant="info" 
+                    block>View List</b-button>
 
-                    <!-- MODAL to edit taskList content -->
-                    <b-modal 
-                        :id="'editTaskListModal'+taskListId" 
-                        :title="taskList.name" 
-                        :hide-footer="true"
-                    >
-                        <edit-tasklist-modal
-                            :task-list="taskList"
-                            :task-list-id="taskListId"
-                            @edit-tasklist="updateTaskList" 
-                        > </edit-tasklist-modal>
-                    </b-modal>
-                </b-card-footer>
+                <!-- MODAL to edit taskList content -->
+                <b-modal 
+                    :id="'editTaskListModal'+taskListId" 
+                    :title="taskList.name" 
+                    :hide-footer="true"
+                >
+                    <edit-tasklist-modal
+                        :task-list="taskList"
+                        :task-list-id="taskListId"
+                        @edit-tasklist="updateTaskList" 
+                    > </edit-tasklist-modal>
+                </b-modal>
+            </b-card-footer>
 
-            </b-card>
-        </b-col>
+        </b-card>
+    </b-col>
     `
 });

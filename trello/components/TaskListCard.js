@@ -47,6 +47,13 @@ Vue.component('tasklist-card', {
                 <p>Deadline: </p><span>{{card.deadline}}</span>
             </div>
 
+            <!-- display tags -->
+            <div>
+                <b-badge variant="success">Hello World</b-badge>
+            </div>
+
+
+
             <!-- card FOOTER -->
             <b-card-footer>
                 <!-- modal button -->
