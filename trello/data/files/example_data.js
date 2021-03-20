@@ -89,6 +89,11 @@ const EXAMPLE_COMMENT_8 = {
     description: "Started initial research"
 }
 
+const EXAMPLE_COMMENT_9 = {
+    timestamp: "2021-03-02T16:00",
+    description: "This comment has a C in it for debugging purposes"
+}
+
 
 // CARDS
 
@@ -156,6 +161,18 @@ const EXAMPLE_CARD_4 = {
     showModal: false
 }
 
+const EXAMPLE_CARD_5 = {
+    name: "Wildfires Presentation",
+    color: "#24B869",
+    description: "Do a presentation about wildfires.",
+    deadline: "2021-03-17T08:30",
+    priority: "2",
+    tags: EXAMPLE_CARD_4_TAGS,
+    comments: [EXAMPLE_COMMENT_8, EXAMPLE_COMMENT_9],
+    checklists: [],
+    showModal: false
+}
+
 
 // TASK LISTS
 const EXAMPLE_TASK_LIST_0 = {
@@ -171,7 +188,7 @@ const EXAMPLE_TASK_LIST_1 = {
     name: "ENVIRON 201",
     color: "#aaaaaa",
     watch: false,
-    cards: [EXAMPLE_CARD_4],
+    cards: [EXAMPLE_CARD_4, EXAMPLE_CARD_5],
     cardOrderStyle: "alphabetical", 
     showModal: false
 }
@@ -196,7 +213,8 @@ const EXAMPLE_PROJECT_0 = {
     boardDescription: "This Trello board is used to organize the schoolwork for my classes",
     projectDeadline: "",
     priority: 2,
-    taskLists: EXAMPLE_PROJECT_0_TASKLISTS
+    taskLists: EXAMPLE_PROJECT_0_TASKLISTS, 
+    filteredTaskLists: []
 }
 
 const EXAMPLE_PROJECT_1 = {
@@ -207,7 +225,8 @@ const EXAMPLE_PROJECT_1 = {
     boardDescription: "This Trello board an example",
     projectDeadline: "",
     priority: 2,
-    taskLists: [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1]
+    taskLists: [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1],
+    filteredTaskLists: []
 }
 
 const EXAMPLE_PROJECTS = [EXAMPLE_PROJECT_0, EXAMPLE_PROJECT_1];
