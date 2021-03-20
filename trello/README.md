@@ -17,6 +17,7 @@ Daily Hours Spent: 35 hours (pt1 + pt 2)
 ### Collaboration
 
 People consulted:
+- Arushi Bhatia (search component)
 
 Resources used:
 - Sorting array of objects alphabetically by a single field: https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array
@@ -33,7 +34,9 @@ Background Images (Pixels.com)
 
 ### Assignment Notes
 
-Known Bugs: Tags don't look 100% correct
+Known Bugs: 
+- Tags don't look 100% correct
+- many issues occur when names of cards/taskLists/projects are the same
 
 Extra credit:
 
