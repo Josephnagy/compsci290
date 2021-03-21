@@ -139,6 +139,10 @@ Vue.component('project-board', {
         updateProject(projectId, editedProject) {
             console.log(`Editing project`);
             this.allData.updateProject(projectId, editedProject);
+        }, 
+        createTaskList(){
+            console.log(`Creating TaskList`);
+            this.allData.createTaskList();
         }
     },
     // display group as a column or cards that is organized by BootstrapVue
@@ -171,6 +175,30 @@ Vue.component('project-board', {
                     @edit-project="updateProject"
                 > </edit-project-modal>
             </b-modal>
+
+            <!-- CREATE TASKLIST  -->
+            <!-- create taskList modal button -->
+            <b-button 
+                v-b-modal="'newTaskList'+allData.data.currentProject.name" 
+                variant="info" 
+                block>New List</b-button>
+            
+            <!-- create taskList project modal  -->
+            <b-modal 
+                :id="'newTaskList'+allData.data.currentProject.name" 
+                title="New List" 
+                ok-only 
+                ok-title="Create List"
+                @ok="createTaskList()"
+            >
+
+                <create-tasklist-modal
+                @create-tasklist="createTaskList"
+                >
+                </create-tasklist-modal>
+
+            </b-modal>
+
 
         </header>
 
