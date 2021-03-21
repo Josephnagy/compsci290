@@ -12,11 +12,6 @@ Vue.component('edit-project-modal', {
             type: Object,
             required: true,
         },
-        // TODO: unique ID of project 
-        projectId: {
-            type: Number, 
-            required: true
-        }
     },
     data() {
         return {
@@ -28,7 +23,10 @@ Vue.component('edit-project-modal', {
     },
     methods: {
         updateProject() {
-            // TODO: 
+            // TODO: make sure all fields are valid
+            console.log(`EVENT: card name " ${this.oldProject.name} " was changed to " ${this.editedProject.name} "`);
+            // NOTE: will need projectId when mutliple boards implemented 
+            this.$emit('edit-project', this.editedProject.id, this.editedProject);
         }
     },
 
@@ -52,6 +50,11 @@ Vue.component('edit-project-modal', {
         <!-- TODO: edit backgroundImage  -->
         <label><b>Background Image</b></label>
         <hr />
+
+        <b-button
+            variant="success"
+            @click="updateProject()"
+        > Save Changes </b-button>
 
     </div> 
     `

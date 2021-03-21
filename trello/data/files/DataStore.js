@@ -6,10 +6,8 @@
 
  const trelloDataStore = {
      data: {
-         searchText: "",
          projects: EXAMPLE_PROJECTS,
          currentProject: EXAMPLE_PROJECTS[0],
-         cardToMoveDestination: null,
          newCard: {
              name: "",
              color: "",
@@ -138,6 +136,19 @@
          else {
              return 'due-later'
          }
+     },
+
+     // ====================================================================================================================================
+    // PROJECT METHODS
+    // ====================================================================================================================================
+     updateProject(projectId, editedProject){
+         // update array of projects 
+         Vue.set(this.data.projects, projectId, editedProject);
+
+         // update current project too 
+         this.data.currentProject = Object.assign(this.data.currentProject, editedProject);
+         
+         console.log("successfully edited project");
      },
 
     // ====================================================================================================================================

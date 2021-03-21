@@ -66,12 +66,14 @@ Vue.component('edit-tasklist-modal', {
         <b-button 
             variant="dark" 
             block 
+            @click="duplicateTaskList()"
             >Duplciate List</b-button>
 
         <!-- TODO: implement delete taskList button -->
         <b-button 
             variant="danger" 
             block 
+            @click="deleteTaskList()"
             >Delete List</b-button>
     </div>
     `

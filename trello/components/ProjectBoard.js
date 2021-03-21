@@ -12,11 +12,6 @@ Vue.component('project-board', {
             type: Object,
             required: true,
         },
-        // NOTE: not sure if I need this yet 
-        // projectId: {
-        //     type: Number,
-        //     required: true,
-        // }
     },
 
     data() {
@@ -171,7 +166,10 @@ Vue.component('project-board', {
             <b-button v-b-modal="'projectModal'+allData.data.currentProject.name" variant="dark" block>Edit Project</b-button>
             <!-- actual modal to edit board  -->
             <b-modal :id="'projectModal'+allData.data.currentProject.name" :title="allData.data.currentProject.name" :hide-footer="true">
-                <edit-project-modal :project="allData.data.currentProject"> </edit-project-modal>
+                <edit-project-modal 
+                    :project="project"
+                    @edit-project="updateProject"
+                > </edit-project-modal>
             </b-modal>
 
         </header>

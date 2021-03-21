@@ -101,13 +101,19 @@ let backgroundImageOptions = ['beach.jpg', 'city.jpg', 'mountains.jpg', 'mushroo
              this.newComment = "";
          }
      }, 
-     computed: {
-     },
+     
      template: 
      `
      <div> 
         <div >
             <main>
+                <!-- Project Selection -->
+                <label><b>Select a Project</b></label>
+                <select name="selectAProject" id="projectSelection" v-model="allData.data.currentProject">
+                    <option v-for="(project) in allData.data.projects" :value="project">{{project.name}}</option>
+                </select>
+                <hr />
+
                 <project-board
                     :project="allData.data.currentProject"
                 > </project-board>

@@ -206,6 +206,7 @@ const EXAMPLE_PROJECT_0_TASKLISTS = [EXAMPLE_TASK_LIST_0, EXAMPLE_TASK_LIST_1, E
 
 // PROJECTS
 const EXAMPLE_PROJECT_0 = {
+    id: 0, 
     name: "Schoolwork",
     color: "#aaaaaa",
     backgroundImage: "beach.jpg",
@@ -218,6 +219,7 @@ const EXAMPLE_PROJECT_0 = {
 }
 
 const EXAMPLE_PROJECT_1 = {
+    id: 1,
     name: "Example Project 2",
     color: "#aaaaaa",
     backgroundImage: "beach.jpg",
