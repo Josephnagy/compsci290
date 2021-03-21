@@ -174,6 +174,11 @@
          Vue.set(this.data.currentProject.taskLists, taskListId, editedTaskList);
          console.log("successfully edited taskList");
      },
+     duplicateTaskList(taskListId){
+         let currentList = this.data.currentProject.taskLists[taskListId];
+         let duplicatedTaskList = new TaskList(currentList.name, currentList.cardOrderStyle, currentList.color, currentList.cards);
+         this.data.currentProject.taskLists.push(duplicatedTaskList);
+     },
      deleteTaskList(taskListId){
          this.data.currentProject.taskLists.splice(taskListId, 1);
      },

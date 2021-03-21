@@ -8,16 +8,18 @@ This repository holds all of the files related to my CS290 Trello project
 
 Start Date: 3/1/2021
 
-Finish Date: 3/8/2021
+Finish Date: 3/20/2021
 
-Daily Hours Spent: 35 hours (pt1 + pt 2)
+Daily Hours Spent: 65 hours (pt1 + pt 2 + 3)
 
 
 
 ### Collaboration
 
 People consulted:
-- Arushi Bhatia (search component)
+- Arushi Bhatia 
+- Carolina Cassedy
+
 
 Resources used:
 - Sorting array of objects alphabetically by a single field: https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array
@@ -36,9 +38,11 @@ Background Images (Pixels.com)
 
 Known Bugs: 
 - Tags don't look 100% correct
-- many issues occur when names of cards/taskLists/projects are the same
+- cannot add tags 
 
 Extra credit:
+
+- multiple boards partially implemented 
 
 ### Example Data Descriptions
 

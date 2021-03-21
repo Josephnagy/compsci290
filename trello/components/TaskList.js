@@ -38,6 +38,10 @@ Vue.component('task-list', {
             console.log(`Deleting taskList`);
             this.allData.deleteTaskList(taskListId);
         }, 
+        duplicateTaskList(taskListId){
+            console.log(`Duplicating taskList`);
+            this.allData.duplicateTaskList(taskListId);
+        },
         createCard(taskListId){
             console.log(`Creating Card`);
             this.allData.createCard(taskListId);
@@ -108,6 +112,7 @@ Vue.component('task-list', {
                         :task-list="taskList"
                         :task-list-id="taskListId"
                         @edit-tasklist="updateTaskList" 
+                        @duplicate-tasklist="duplicateTaskList"
                         @delete-tasklist="deleteTaskList"
                     > </edit-tasklist-modal>
                 </b-modal>
