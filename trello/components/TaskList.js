@@ -37,6 +37,10 @@ Vue.component('task-list', {
         deleteTaskList(taskListId){
             console.log(`Deleting taskList`);
             this.allData.deleteTaskList(taskListId);
+        }, 
+        createCard(taskListId){
+            console.log(`Creating Card`);
+            this.allData.createCard(taskListId);
         }
     },
     // display group as a column or cards that is organized by BootstrapVue
@@ -68,9 +72,26 @@ Vue.component('task-list', {
             <b-card-footer>
                 <!-- modal button -->
                 <b-button 
-                    v-b-modal="'editTaskListModal'+taskListId" 
+                    v-b-modal="'createNewCardModal'+taskListId" 
                     variant="success" 
                     block>Add Card</b-button>
+
+                <!-- MODAL to edit create card -->
+                <b-modal 
+                    :id="'createNewCardModal'+taskListId" 
+                    title="Create Card" 
+                    :hide-footer="true"
+                >
+                    <create-card-modal
+                        :task-list="taskList"
+                        :task-list-id="taskListId"
+                        @create-card="createCard"
+                    > </create-card-modal>
+                </b-modal>
+
+
+
+
 
                 <b-button 
                     v-b-modal="'editTaskListModal'+taskListId" 

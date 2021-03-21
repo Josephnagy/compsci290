@@ -138,7 +138,7 @@
          }
      },
 
-     // ====================================================================================================================================
+    // ====================================================================================================================================
     // PROJECT METHODS
     // ====================================================================================================================================
      updateProject(projectId, editedProject){
@@ -183,4 +183,21 @@
          // remove card from projects.taskList.cards
          this.data.currentProject.taskLists[taskListId].cards.splice(cardId, 1);
      },
+     createCard(taskListId){
+         // push 
+         this.data.currentProject.taskLists[taskListId].cards.push(this.data.newCard);
+
+         // reset new card
+         this.data.newCard = {
+             name: "",
+             color: "",
+             description: "",
+             deadline: "",
+             priority: "",
+             tags: [],
+             comments: [],
+             checklists: [],
+             showModal: false
+         }
+     }
  }
