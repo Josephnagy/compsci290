@@ -206,5 +206,20 @@
              checklists: [],
              showModal: false
          }
-     }
+     },
+
+     // ====================================================================================================================================
+    // COMMENT METHODS
+    // ====================================================================================================================================
+     addComment(cardId, taskListId){
+        // prepare comment content
+        let now = new Date();
+        let newCommentToAdd = new Comment(this.javascriptDateObjectToISOString(now), this.data.newComment);
+
+        // add comment to card 
+        this.data.currentProject.taskLists[taskListId].cards[cardId].comments.push(newCommentToAdd);
+
+        // reset field
+        this.data.newComment = "";
+    }
  }

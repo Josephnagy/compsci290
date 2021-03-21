@@ -27,7 +27,9 @@ Vue.component('edit-card-modal', {
             // preserve card before changes in case user wants to discard changes 
             oldCard: this.card,
             // local copy of the data
-            editedCard: JSON.parse(JSON.stringify(this.card))
+            editedCard: JSON.parse(JSON.stringify(this.card)),
+            // allow access to dataStore so methods can be called
+            allData: trelloDataStore
         }
     },
     methods: {
@@ -39,6 +41,10 @@ Vue.component('edit-card-modal', {
         deleteCard(){
             console.log(`EVENT: card name " ${this.oldCard.name} " was deleted`);
             this.$emit('delete-card', this.cardId, this.taskListId);
+        }, 
+        addComment(){
+            console.log(`EVENT: card name " ${this.oldCard.name} " added a comment "`);
+            this.$emit('create-comment', this.cardId, this.taskListId);
         }
     },
 
@@ -77,11 +83,15 @@ Vue.component('edit-card-modal', {
 
         <!-- add comments -->
         <label><b>Add Comment</b></label>
-        <input style="width: 100%" type="text"></input>
+        <input style="width: 100%" type="text" v-model="allData.data.newComment"></input>
         <hr />
 
-        <!-- TODO: Implement add comment -->
-        <b-button variant="info" block>Add Comment</b-button>
+        <!-- Implement add comment -->
+        <b-button 
+            variant="info" 
+            block
+            @click="addComment()"
+        >Add Comment</b-button>
 
 
         <label><b>Comments</b></label>
@@ -92,7 +102,7 @@ Vue.component('edit-card-modal', {
                 :key="k"
             >
                 <div>
-                    <p>{{comment.timestamp}}</p>
+                    <p>{{allData.displayDate(comment.timestamp)}}</p>
                     <p>{{comment.description}}</p>
                 </div>
             </li>
