@@ -48,12 +48,17 @@ Vue.component('tasklist-card', {
         >
             <!-- card details -->
             <div class="card-content">
-                <p>Deadline: </p><span>{{card.deadline}}</span>
+                <p>Deadline: </p><span>{{allData.displayDate(card.deadline)}}</span>
             </div>
 
             <!-- display tags -->
             <div>
-                <b-badge variant="success">Hello World</b-badge>
+                <ul>
+                    <li
+                        v-for="(tag, t) in card.tags">
+                            <b-badge>{{tag.name}}</b-badge>
+                    </li>
+                </ul>
             </div>
 
 
