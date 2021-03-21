@@ -33,6 +33,10 @@ Vue.component('task-list', {
         updateTaskList(taskListID, editedTaskList){
             console.log(`Editing tasklist`);
             this.allData.updateTaskList(taskListID, editedTaskList);
+        }, 
+        deleteTaskList(taskListId){
+            console.log(`Deleting taskList`);
+            this.allData.deleteTaskList(taskListId);
         }
     },
     // display group as a column or cards that is organized by BootstrapVue
@@ -65,6 +69,11 @@ Vue.component('task-list', {
                 <!-- modal button -->
                 <b-button 
                     v-b-modal="'editTaskListModal'+taskListId" 
+                    variant="success" 
+                    block>Add Card</b-button>
+
+                <b-button 
+                    v-b-modal="'editTaskListModal'+taskListId" 
                     variant="info" 
                     block>View List</b-button>
 
@@ -78,6 +87,7 @@ Vue.component('task-list', {
                         :task-list="taskList"
                         :task-list-id="taskListId"
                         @edit-tasklist="updateTaskList" 
+                        @delete-tasklist="deleteTaskList"
                     > </edit-tasklist-modal>
                 </b-modal>
             </b-card-footer>

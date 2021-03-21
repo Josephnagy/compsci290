@@ -31,6 +31,10 @@ Vue.component('edit-tasklist-modal', {
             // TODO: make sure all fields are valid
             console.log(`EVENT: tasklist name " ${this.oldTaskList.name} " was changed to " ${this.editedTaskList.name} "`);
             this.$emit('edit-tasklist', this.taskListId, this.editedTaskList);
+        }, 
+        deleteTaskList() {
+            console.log(`EVENT: taskList name " ${this.oldTaskList.name} " was deleted`);
+            this.$emit('delete-tasklist', this.taskListId);
         }
     },
 
@@ -62,14 +66,7 @@ Vue.component('edit-tasklist-modal', {
             @click="updateTaskList()"
         > Save Changes </b-button>
 
-        <!-- TODO: implement duplicate list button -->
-        <b-button 
-            variant="dark" 
-            block 
-            @click="duplicateTaskList()"
-            >Duplciate List</b-button>
-
-        <!-- TODO: implement delete taskList button -->
+        <!-- delete taskList button -->
         <b-button 
             variant="danger" 
             block 

@@ -34,6 +34,10 @@ Vue.component('tasklist-card', {
         updateCard(cardID, taskListID, editedCard) {
             console.log(`Editing card`);
             this.allData.updateCard(cardID, taskListID, editedCard);
+        }, 
+        deleteCard(){
+            console.log(`Deleting card`);
+            this.allData.deleteCard(this.cardId, this.taskListId);
         }
     },
 
@@ -75,6 +79,7 @@ Vue.component('tasklist-card', {
                         :card-id="cardId"
                         :task-list-id="taskListId"
                         @edit-card="updateCard" 
+                        @delete-card="deleteCard"
                     > </edit-card-modal>
                 </b-modal>
         </b-card>

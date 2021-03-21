@@ -147,7 +147,7 @@
 
          // update current project too 
          this.data.currentProject = Object.assign(this.data.currentProject, editedProject);
-         
+
          console.log("successfully edited project");
      },
 
@@ -167,13 +167,20 @@
          Vue.set(this.data.currentProject.taskLists, taskListId, editedTaskList);
          console.log("successfully edited taskList");
      },
+     deleteTaskList(taskListId){
+         this.data.currentProject.taskLists.splice(taskListId, 1);
+     },
 
     // ====================================================================================================================================
     // CARD METHODS
     // ====================================================================================================================================
-
      updateCard(cardId, taskListId, editedCard){
         Vue.set(this.data.currentProject.taskLists[taskListId].cards, cardId, editedCard);
          console.log("successfully edited card");
-     }
+     }, 
+     // deletes card from taskList based on indicies
+     deleteCard(cardId, taskListId) {
+         // remove card from projects.taskList.cards
+         this.data.currentProject.taskLists[taskListId].cards.splice(cardId, 1);
+     },
  }

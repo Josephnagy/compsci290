@@ -35,6 +35,10 @@ Vue.component('edit-card-modal', {
             // TODO: make sure all fields are valid
             console.log(`EVENT: card name " ${this.oldCard.name} " was changed to " ${this.editedCard.name} "`); 
             this.$emit('edit-card', this.cardId, this.taskListId, this.editedCard);
+        },
+        deleteCard(){
+            console.log(`EVENT: card name " ${this.oldCard.name} " was deleted`);
+            this.$emit('delete-card', this.cardId, this.taskListId);
         }
     },
 
@@ -98,6 +102,11 @@ Vue.component('edit-card-modal', {
             variant="success"
             @click="updateCard()"
         > Save Changes </b-button>
+
+        <b-button
+            variant="danger"
+            @click="deleteCard()"
+        > Delete Card </b-button>
 
     </div> 
     `
