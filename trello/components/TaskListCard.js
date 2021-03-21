@@ -39,6 +39,10 @@ Vue.component('tasklist-card', {
             console.log(`Deleting card`);
             this.allData.deleteCard(this.cardId, this.taskListId);
         }, 
+        duplicateCard(cardID, taskListID){
+            console.log(`Duplicating card`);
+            this.allData.duplicateCard(cardID, taskListID);
+        },
         addComment(cardID, taskListID){
             console.log("creating comment");
             this.allData.addComment(cardID, taskListID);
@@ -89,6 +93,7 @@ Vue.component('tasklist-card', {
                         :task-list-id="taskListId"
                         @edit-card="updateCard" 
                         @delete-card="deleteCard"
+                        @duplicate-card="duplicateCard"
                         @create-comment="addComment"
                     > </edit-card-modal>
                 </b-modal>

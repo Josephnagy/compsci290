@@ -42,6 +42,11 @@ Vue.component('edit-card-modal', {
             console.log(`EVENT: card name " ${this.oldCard.name} " was deleted`);
             this.$emit('delete-card', this.cardId, this.taskListId);
         }, 
+        duplicateCard(){
+            console.log(`EVENT: card name " ${this.oldCard.name} " was duplicated`);
+            this.$emit('duplicate-card', this.cardId, this.taskListId);
+
+        },
         addComment(){
             console.log(`EVENT: card name " ${this.oldCard.name} " added a comment "`);
             this.$emit('create-comment', this.cardId, this.taskListId);
@@ -112,6 +117,11 @@ Vue.component('edit-card-modal', {
             variant="success"
             @click="updateCard()"
         > Save Changes </b-button>
+
+        <b-button
+            variant="info"
+            @click="duplicateCard()"
+        > Duplicate Card </b-button>
 
         <b-button
             variant="danger"

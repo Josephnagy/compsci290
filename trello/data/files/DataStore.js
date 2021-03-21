@@ -207,6 +207,12 @@
              showModal: false
          }
      },
+     // duplicate an entire card, append to end of taskList
+     duplicateCard(cardId, taskListId) {
+         let currentCard = this.data.currentProject.taskLists[taskListId].cards[cardId];
+         let duplicatedCard = new Card(currentCard.name, currentCard.color, currentCard.description, currentCard.deadline, currentCard.priority, currentCard.tags, currentCard.comments, currentCard.checkLists);
+         this.data.currentProject.taskLists[taskListId].cards.push(duplicatedCard);
+     },
 
      // ====================================================================================================================================
     // COMMENT METHODS
