@@ -155,12 +155,19 @@
     // LIST METHODS
     // ====================================================================================================================================
      createTaskList() {
-         // create new taskList using constructor 
-         let newTaskListToAdd = new TaskList(this.data.newTaskList.name, this.data.newTaskList.cardOrderStyle, this.data.newTaskList.color, []);
-         // push new taskList to the end of currentProject's taskLists 
-         this.data.currentProject.taskLists.push(newTaskListToAdd);
-         // reset newTaskList fields 
-         this.data.newTaskList = { name: "", watch: false, color: "", cards: [], cardOrderStyle: "alphabetical", showModal: false, createNewCard: false };
+        // push 
+        this.data.currentProject.taskLists.push(this.data.newTaskList);
+
+         // reset new taskList
+         this.data.newTaskList = {
+             name: "",
+             watch: false,
+             color: "",
+             cards: [],
+             cardOrderStyle: "alphabetical",
+             showModal: false,
+             createNewCard: false
+         }
      },
      
      updateTaskList(taskListId, editedTaskList) {
