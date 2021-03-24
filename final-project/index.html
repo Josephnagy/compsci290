@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Joseph Nagy">
+    <!-- always label your name with a title -->
+    <title>Final Project Proposal</title>
+    <!-- scale page to fit entire screen, so it properly fills non-desktop devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- DEV-only for easier refreshing: stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- load required Bootstrap and BootstrapVue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <!-- load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <!-- load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.js"></script>
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- interaction for this page, defer loading until after page to allow access to DOM elements -->
+    <script defer src="main.js"></script>
+</head>
+
+<body>
+    <h1>Finla Project Proposal</h1>
+    <div>
+        <ul> 
+            <li> 
+                Idea
+                <ul> 
+                    <li>On a very basic level, I want to create an app that allows users to do two things: analyze their own music and
+                    discover new music through Spotify. With respect to analyzing their own music, I’d like users to be able to explore
+                    their historical listening habits over time, see changes in their habits, etc. In discovering new music, I’d like to
+                    expand the ways in which users can generate new playlists and artists to listen to. Currently, Spotify will generate a
+                    Daily Mix for you, or allow you to create similar playlists from existing ones; I want to expand this to allow different
+                    types of input variables (for example, allow users to generate playlists based on danceability).</li>
+                </ul>
+            </li>
+
+            <li>
+                Data sources
+                <ul>
+                    <li>I plan on using the <a href="https://developer.spotify.com/discover/">Spotify developer tools</a> for most of the application. It’s extremely robust and has powerful
+                    algorithms to generate all of the data I will</li>
+                </ul>
+            </li>
+
+
+            <li>
+                Features
+                <ul>
+                    <li>Users will be able to find new music based on a range of inputs including:
+                        <ul>
+                            <li>Audio features such as danceability, valence, tempo and liveness</li>
+                            <li>Songs, artists or albums</li>
+                            <li>This can all be done through the Spotify API’s “Get Recommendations” feature. 
+                                The documentation or that can be found <a href="https://developer.spotify.com/documentation/web-api/reference/#category-browse">here</a></li>
+                        </ul>
+                        <li>Users will be able to analyze their own listening habits, seeing not only information such as their top artists, songs
+                        or genres, but also how audio features such as danceability, valence, tempo and liveness have changed in their music
+                        taste</li>
+                        <li>o An optional feature would be the ability to share these insights with friends. Both users would have to agree to
+                        sharing such data through some sort of “friend” relationship. Users could also have the option to make such information
+                        public</li>
+                        <li>o Users will be able to save playlists they’ve created directly to the web app and have the option to export it to their
+                        own Spotify account</li>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                Schedule
+                <ul>
+                    <li>Progress Demo 1</li>
+                        <ul>
+                            <li>Basic data visualizations implemented for user’s listening habits</li>
+                            <li>Basic recommendation calls to the API based on some inputs (i.e. songs, danceability)</li>
+                            <li>Basic styling complete for the page but nothing crazy</li>
+                            <li>Have some input collected from possible users about what they like/don’t like and features they might like to see
+                            implemented</li>
+                        </ul>
+
+                        <li>Progress Demo 2</li>
+                        <ul>
+                            <li>Most of the data visualization will be complete for user’s listening habits</li>
+                            <li>Most recommendation calls to the API based on most inputs.</li>
+                            <ul> 
+                                <li>I’m assuming I’ll run into issues with certain types of input, as Spotify’s documentation says that some types of
+                                inputs may be too specific to generate recommendations. I’m hoping to have a good idea of what is and is not possible by
+                                then and have a solution to the issues.</li>
+                            </ul>
+                            <li>Most styling complete on the page. Enough where I will be able to get user input from having people test the
+                            application and tell me what they like / don’t like about the UI</li>
+                        </ul>
+
+                        <li>Progress Demo 3</li>
+                        <ul>
+                            <li>Everything related to functionality finished by now. I’d like to spend the time between progress demo 3 and the final
+                            project date fixing all of the bugs I might have</li>
+                            <li>UI should be complete. I’d like to use the time between progress demo 3 and the final project date getting further
+                            input from possible users about the UI and use the next week to incorporate their recommendations.</li>
+                        </ul>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+</body>
+
+</html>
