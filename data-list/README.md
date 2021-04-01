@@ -1,8 +1,33 @@
-# Project Portfolio
+# Data List
 
-This repository holds all of my work for CompSci 290 (Spring 2021): Web Application Development
+This repository holds all of the code for my COMPSCI 290 data list project
 
-Note: I also used a Duke GitLab account during the semester. That profile can be found [here](https://coursework.cs.duke.edu/joseph.nagy)
+## Name: Joseph Nagy
 
 
+### Timeline
 
+Start Date: 3/28/2021
+
+Finish Date: 4/1/2021
+
+Hours Spent: 25
+
+
+### Collaboration
+
+People consulted:
+
+Resources used:
+- Get min/max from array of objects: https://stackoverflow.com/questions/8864430/compare-javascript-array-of-objects-to-get-min-max
+
+Asset attributions:
+
+
+### Assignment Notes
+
+Known Bugs: This website was optimized for a 28" display. 
+
+Extra credit:
+
+### Impressions
