@@ -30,29 +30,35 @@
 <body>
     <h1>Final Project Proposal</h1>
     <div>
-        <ul> 
-            <li> 
+        <ul>
+            <li>
                 Idea
-                <ul> 
-                    <li>My idea is a web application that allows users to plan ski/snowboarding trips with friends. So users are able to add
-                    mountains (i.e. if the trip is to Killington VT, then the mountain would be Killington), flights and hotels to a list of
-                    trips that they organize and track throughout the season</li>
-                    <li>I came up with this idea after planning snowboarding trips with friends. We would have a variety of google docs
-                    organizing our trips, a million tabs open looking at hotels, flights trail maps, etc. So I thought of this idea to
-                    create a one-stop-shop to plan snowboarding + ski trips</li>
+                <ul>
+                    <li>My idea is a web application that allows users to plan ski/snowboarding trips with friends. So
+                        users are able to add
+                        mountains (i.e. if the trip is to Killington VT, then the mountain would be Killington), flights
+                        and hotels to a list of
+                        trips that they organize and track throughout the season</li>
+                    <li>I came up with this idea after planning snowboarding trips with friends. We would have a variety
+                        of google docs
+                        organizing our trips, a million tabs open looking at hotels, flights trail maps, etc. So I
+                        thought of this idea to
+                        create a one-stop-shop to plan snowboarding + ski trips</li>
                 </ul>
             </li>
 
             <li>
                 Scope
                 <ul>
-                    <li>The main feature of the app is that users can add mountains, hotels and flights together to create trips.</li>
-                    <li>Additionally, uses have one central place where they can browse anything from mountain trail maps, lift ticket prices,
-                    flights, and hotels all in one location</li>
+                    <li>The main feature of the app is that users can add mountains, hotels and flights together to
+                        create trips.</li>
+                    <li>Additionally, uses have one central place where they can browse anything from mountain trail
+                        maps, lift ticket prices,
+                        flights, and hotels all in one location</li>
                     <li>Mountains
-                        <ul> 
-                            <li>Trail difficulty distribution (i.e. 30% beginner, 40% intermediate, 30% expert)</li> 
-                            <li>Trail Map</li> 
+                        <ul>
+                            <li>Trail difficulty distribution (i.e. 30% beginner, 40% intermediate, 30% expert)</li>
+                            <li>Trail Map</li>
                             <li>Lift ticket prices</li>
                             <li>Winter season dates</li>
                             <li>Annual snowfall</li>
@@ -77,9 +83,11 @@
                     <li> Trips
                         <ul>
                             <li>Mountains, hotels and flights for each trip</li>
-                            <li>If time allows, I’d also like to add a “who’s bringing what” feature that allows users to track what food, supplies,
-                            etc. on each trip. The point of this would be to ensure everything important is brought and people don’t bring multiples
-                            of the same equipment</li>
+                            <li>If time allows, I’d also like to add a “who’s bringing what” feature that allows users
+                                to track what food, supplies,
+                                etc. on each trip. The point of this would be to ensure everything important is brought
+                                and people don’t bring multiples
+                                of the same equipment</li>
                         </ul>
                     </li>
                 </ul>
@@ -92,16 +100,17 @@
                     <li>Mountains
                         <ul>
                             <li> Mountain Meta Data
-                                <ul> 
+                                <ul>
                                     <li>Mountain IDs, URLs, region, trail difficulty distribution</li>
-                                    <li>Available via API call 
-                                        <a href="https://skiapp.onthesnow.com/app/widgets/resortlist?region=us&regionids=429&language=en&pagetype=profile&direction=1&order=resort&limit=1000&countrycode=USA&minvalue=-1&open=anystatus">here</a>
+                                    <li>Available via API call
+                                        <a
+                                            href="https://skiapp.onthesnow.com/app/widgets/resortlist?region=us&regionids=429&language=en&pagetype=profile&direction=1&order=resort&limit=1000&countrycode=USA&minvalue=-1&open=anystatus">here</a>
                                     </li>
                                 </ul>
                             </li>
                             <li>Lift ticket prices for each mountain via OnTheSnow
                                 <ul>
-                                    <li>Need to be scraped via Puppeteer from 
+                                    <li>Need to be scraped via Puppeteer from
                                         <a href="https://www.onthesnow.com/united-states/lift-tickets.html">here</a>
                                     </li>
                                 </ul>
@@ -109,13 +118,17 @@
 
                             <li>Additional mountain data via OnTheSnow
                                 <ul>
-                                    <li>Overview description, trail map, opening & closing dates, run count, address and elevation</li>
-                                    <li>Need to be scraped via Puppeteer from each mountain's webpage using the list of URLs
-                                        <a href="https://skiapp.onthesnow.com/app/widgets/resortlist?region=us&regionids=429&language=en&pagetype=profile&direction=1&order=resort&limit=1000&countrycode=USA&minvalue=-1&open=anystatus">here</a>
+                                    <li>Overview description, trail map, opening & closing dates, run count, address and
+                                        elevation</li>
+                                    <li>Need to be scraped via Puppeteer from each mountain's webpage using the list of
+                                        URLs
+                                        <a
+                                            href="https://skiapp.onthesnow.com/app/widgets/resortlist?region=us&regionids=429&language=en&pagetype=profile&direction=1&order=resort&limit=1000&countrycode=USA&minvalue=-1&open=anystatus">here</a>
                                     </li>
                                     <li>• Example of a “ski-resort” page from OnTheSnow
-                                        <a href="https://www.onthesnow.com/colorado/breckenridge/ski-resort.html">here</a>
-                                    </li> 
+                                        <a
+                                            href="https://www.onthesnow.com/colorado/breckenridge/ski-resort.html">here</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -133,8 +146,9 @@
                             </li>
                             <li>Google’s Geocoding API
                                 <ul>
-                                    <li>API link 
-                                        <a href="https://developers.google.com/maps/documentation/geocoding/overview?hl=es-419">here</a>
+                                    <li>API link
+                                        <a
+                                            href="https://developers.google.com/maps/documentation/geocoding/overview?hl=es-419">here</a>
                                     </li>
                                 </ul>
                             </li>
@@ -145,8 +159,9 @@
                             <li> Skyscanner API </li>
                             <li>Returns flight listings given dates, airports and locale</li>
                             <li>
-                                API link 
-                                <a href="https://rapidapi.com/skyscanner/api/skyscanner-flight-search?endpoint=5aa1eab3e4b00687d3574279">here</a>
+                                API link
+                                <a
+                                    href="https://rapidapi.com/skyscanner/api/skyscanner-flight-search?endpoint=5aa1eab3e4b00687d3574279">here</a>
                             </li>
                         </ul>
                     </li>
@@ -157,24 +172,28 @@
                 Schedule
                 <ul>
                     <li>Progress Demo 1</li>
-                        <ul>
-                            <li>Basic API calls, some web scraping, some front end complete</li>
-                        </ul>
+                    <ul>
+                        <li>Basic API calls, some web scraping, some front end complete</li>
+                    </ul>
 
-                        <li>Progress Demo 2</li>
-                        <ul>
-                            <li>All API calls working, most of web scraping complete, most of front end complete</li>
-                            <li>Most styling complete on the page. Enough where I will be able to get user input from having people test the
+                    <li>Progress Demo 2</li>
+                    <ul>
+                        <li>All API calls working, most of web scraping complete, most of front end complete</li>
+                        <li>Most styling complete on the page. Enough where I will be able to get user input from having
+                            people test the
                             application and tell me what they like / don’t like about the UI</li>
-                        </ul>
+                    </ul>
 
-                        <li>Progress Demo 3</li>
-                        <ul>
-                            <li>Everything related to functionality finished by now. I’d like to spend the time between progress demo 3 and the final
+                    <li>Progress Demo 3</li>
+                    <ul>
+                        <li>Everything related to functionality finished by now. I’d like to spend the time between
+                            progress demo 3 and the final
                             project date fixing all of the bugs I might have</li>
-                            <li>UI should be complete. I’d like to use the time between progress demo 3 and the final project date getting further
-                            input from possible users about the UI and use the next week to incorporate their recommendations.</li>
-                        </ul>
+                        <li>UI should be complete. I’d like to use the time between progress demo 3 and the final
+                            project date getting further
+                            input from possible users about the UI and use the next week to incorporate their
+                            recommendations.</li>
+                    </ul>
                 </ul>
             </li>
             <li>Wireframe</li>
